@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:56:01 50BA50                 priveda/fixed64/[add_float.go]
+// :v: 2019-05-14 17:30:23 A505E0                 priveda/fixed64/[add_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -9,8 +9,8 @@ import (
 	"math"
 )
 
-// AddFloat adds one or more floating-point numbers to a currency
-// object and returns the result. The object's value isn't changed.
+// AddFloat adds one or more floating-point numbers to a fixed-point
+// number and returns the result. The original number is not changed.
 func (ob Fixed64) AddFloat(add ...float64) Fixed64 {
 	const lim float64 = math.MaxInt64 / 1E4
 	a := ob.i64

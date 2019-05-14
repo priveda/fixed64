@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:56:01 42F23F                       priveda/fixed64/[sub.go]
+// :v: 2019-05-14 17:30:23 DFFA52                       priveda/fixed64/[sub.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
-// Sub subtracts one or more currency values from a currency object
-// and returns the result. The object's value isn't changed.
+// Sub subtracts one or more fixed-point numbers from a fixed-point
+// number and returns the result. The original number is not changed.
 func (ob Fixed64) Sub(subtract ...Fixed64) Fixed64 {
 	for _, n := range subtract {
 		var (

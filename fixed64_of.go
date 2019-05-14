@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:56:01 444C66                priveda/fixed64/[fixed64_of.go]
+// :v: 2019-05-14 17:30:23 5AD982                priveda/fixed64/[fixed64_of.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -10,16 +10,23 @@ import (
 	"reflect"
 )
 
-// Fixed64Of converts any compatible value type to a Fixed64.
-// This includes all numeric types and strings. If a string is
-// not numeric, logs an error and sets the Fixed64 to zero.
+// Fixed64Of converts any compatible type to a Fixed64. This includes all
+// simple numeric types and strings, as well as pointers to these types.
+//
+// When given a non-numeric string, logs an error and returns Fixed64{NaN}
+// which is a fixed-number type with a null value.
+//
+// When given a nil pointer, also returns Fixed64{NaN}.
+//
+// Note that fmt.Stringer() is not automatically handled as
+// a string, to avoid hidden conversions and possible bugs.
+//
 func Fixed64Of(value interface{}) Fixed64 {
 	switch val := value.(type) {
 	case Fixed64:
 		{
 			return val
 		}
-
 	// integers
 	case int8:
 		{

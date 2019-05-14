@@ -1,11 +1,11 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 41BB3A                priveda/fixed64/[is_greater.go]
+// :v: 2019-05-14 17:30:23 97ECB8                priveda/fixed64/[is_greater.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
-// IsGreater returns true if the object is greater than val.
+// IsGreater returns true if the number is greater than value.
 func (ob Fixed64) IsGreater(val interface{}) bool {
 	return ob.i64 > Fixed64Of(val).i64
 }

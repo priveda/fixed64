@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 9C6F49            priveda/fixed64/[unmarshal_json.go]
+// :v: 2019-05-14 17:30:23 B2D0C4            priveda/fixed64/[unmarshal_json.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -9,8 +9,8 @@ import (
 	"encoding/json"
 )
 
-// UnmarshalJSON unmarshals a JSON description of zr.Fixed64.
-// This method alters the object's value.
+// UnmarshalJSON unmarshals a JSON description of Fixed64.
+// This method alters the number's value.
 func (ob *Fixed64) UnmarshalJSON(data []byte) error {
 	//   ^  don't remove pointer receiver, it is necessary
 	if ob == nil {

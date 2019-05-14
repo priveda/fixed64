@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 354E9A                    priveda/fixed64/[string.go]
+// :v: 2019-05-14 17:30:23 E9017E                    priveda/fixed64/[string.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -10,8 +10,8 @@ import (
 	"strings"
 )
 
-// String returns a string representing the currency value
-// and implements the Stringer Interface.
+// String returns a string representing the fixed-point number
+// with up to 4 decimals and implements the Stringer interface.
 func (ob Fixed64) String() string {
 	var (
 		i    = ob.i64 / 1E4             // integer value

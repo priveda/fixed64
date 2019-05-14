@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:56:01 C278C8                       priveda/fixed64/[mul.go]
+// :v: 2019-05-14 17:30:23 CE862C                       priveda/fixed64/[mul.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -9,8 +9,8 @@ import (
 	"math/big"
 )
 
-// Mul multiplies a currency object by one or more currency values
-// and returns the result. The object's value isn't changed.
+// Mul multiplies a fixed-point number by one or more fixed-point
+// numbers and returns the result. The original number is not changed.
 func (ob Fixed64) Mul(multiply ...Fixed64) Fixed64 {
 	for _, cur := range multiply {
 		var (

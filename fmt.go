@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 C82A93                       priveda/fixed64/[fmt.go]
+// :v: 2019-05-14 17:30:23 B5CD7B                       priveda/fixed64/[fmt.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -9,7 +9,7 @@ import (
 	"bytes"
 )
 
-// Fmt returns the currency value as a a string
+// Fmt returns the fixed-point number as a a string
 // delimited with commas (grouped every three digits)
 // and having the specified number of decimal places.
 // When decimalPlaces is negative, the resulting

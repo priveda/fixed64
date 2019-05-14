@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:56:01 D07BBC                 priveda/fixed64/[mul_float.go]
+// :v: 2019-05-14 17:30:23 DCC465                 priveda/fixed64/[mul_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
-// MulFloat multiplies a currency object by one or more floating-point
-// numbers and returns the result. The object's value isn't changed.
+// MulFloat multiplies a fixed-point number by one or more floating-point
+// numbers and returns the result. The original number is not changed.
 func (ob Fixed64) MulFloat(multiply ...float64) Fixed64 {
 	a := float64(ob.i64)
 	for _, b := range multiply {

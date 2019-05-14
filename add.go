@@ -1,14 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:56:00 F2B6FB                       priveda/fixed64/[add.go]
+// :v: 2019-05-14 17:30:23 05CA1B                       priveda/fixed64/[add.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
-// Add adds one or more currency values and returns a new Fixed64 object.
-// The value in the object to which this method is applied isn't changed.
-// If there is an overflow, sets the Fixed64's internal value to
-// math.MinInt64 or math.MaxInt64 depending on if the result is negative.
+// Add adds one or more fixed-point numbers and returns a new Fixed64.
+// The original number on which Add() is called is not changed.
+// If there is an overflow, sets the number's internal value to
+// math.MaxInt64 (or math.minInt64+1 when the overflow is negative).
 func (ob Fixed64) Add(add ...Fixed64) Fixed64 {
 	for _, itm := range add {
 		var (

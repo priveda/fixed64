@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:01:08 A05C2F                 priveda/fixed64/[constants.go]
+// :v: 2019-05-14 17:30:23 2EFCA5                 priveda/fixed64/[constants.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -11,9 +11,9 @@ import (
 )
 
 const (
-	// IntLimit specifies the highest (and lowest
-	// when negative) integer component that currency
-	// can hold, about 922.33 trillion.
+	// IntLimit specifies the highest (and lowest when negative)
+	// integer component that the fixed-point type can hold,
+	// about 922.33 trillion.
 	// The exact number is 922(t)337(b)203(m)685,476.
 	//
 	// This limit exists because an int64, on which Fixed64 is based, can hold

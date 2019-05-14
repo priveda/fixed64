@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 2644A5              priveda/fixed64/[marshal_json.go]
+// :v: 2019-05-14 17:30:23 41B416              priveda/fixed64/[marshal_json.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-// MarshalJSON returns the JSON encoding of zr.Fixed64.
+// MarshalJSON returns the JSON encoding of Fixed64.
 func (ob Fixed64) MarshalJSON() ([]byte, error) {
 	//
 	// TODO: using fmt.Sprintf() may slow down performance.
