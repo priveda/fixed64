@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:27:00 FC6A2D                    priveda/fixed64/[module.go]
+// :v: 2019-05-14 16:56:01 AEDC88                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -63,7 +63,7 @@ package fixed64
 //   (ob *Fixed64) UnmarshalJSON(data []byte) error
 //
 // # Helper Function
-//   currencyOverflow(isNegative bool, a ...interface{}) Fixed64
+//   fixed64Overflow(isNegative bool, a ...interface{}) Fixed64
 
 // -----------------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:29:06 FE03B7                priveda/fixed64/[fixed64_of.go]
+// :v: 2019-05-14 16:56:01 444C66                priveda/fixed64/[fixed64_of.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -40,7 +40,7 @@ func Fixed64Of(value interface{}) Fixed64 {
 	case int64:
 		{
 			if val < -IntLimit || val > IntLimit {
-				return currencyOverflow(val < 0, EOverflow, ": ", val)
+				return fixed64Overflow(val < 0, EOverflow, ": ", val)
 			}
 			return Fixed64{int64(val) * 1E4}
 		}
@@ -64,7 +64,7 @@ func Fixed64Of(value interface{}) Fixed64 {
 	case uint64:
 		{
 			if val > IntLimit {
-				return currencyOverflow(false, EOverflow, "uint64: ", val)
+				return fixed64Overflow(false, EOverflow, "uint64: ", val)
 			}
 			return Fixed64{int64(val) * 1E4}
 		}
@@ -73,7 +73,7 @@ func Fixed64Of(value interface{}) Fixed64 {
 		{
 			if val < -float32(IntLimit)-0.9999 ||
 				val > float32(IntLimit)+0.9999 {
-				return currencyOverflow(val < 0, EOverflow, "float32: ", val)
+				return fixed64Overflow(val < 0, EOverflow, "float32: ", val)
 			}
 			return Fixed64{int64(float64(val) * 1E4)}
 		}
@@ -81,7 +81,7 @@ func Fixed64Of(value interface{}) Fixed64 {
 		{
 			if val < -float64(IntLimit)-0.9999 ||
 				val > float64(IntLimit)+0.9999 {
-				return currencyOverflow(val < 0, EOverflow, "float64: ", val)
+				return fixed64Overflow(val < 0, EOverflow, "float64: ", val)
 			}
 			return Fixed64{int64(val * 1E4)}
 		}

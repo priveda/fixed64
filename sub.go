@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 614394                       priveda/fixed64/[sub.go]
+// :v: 2019-05-14 16:56:01 42F23F                       priveda/fixed64/[sub.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -16,10 +16,10 @@ func (ob Fixed64) Sub(subtract ...Fixed64) Fixed64 {
 		)
 		// check for overflow
 		if c < minInt64 || (a < 0 && b > 0 && b > (-minInt64+a)) {
-			return currencyOverflow(true, EOverflow, ": ", a, " - ", b)
+			return fixed64Overflow(true, EOverflow, ": ", a, " - ", b)
 		}
 		if c > maxInt64 || (a > 0 && b < 0 && b < (-maxInt64+a)) {
-			return currencyOverflow(false, EOverflow, ": ", a, " - ", b)
+			return fixed64Overflow(false, EOverflow, ": ", a, " - ", b)
 		}
 		ob.i64 = c
 	}

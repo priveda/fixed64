@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 A1AA17                       priveda/fixed64/[mul.go]
+// :v: 2019-05-14 16:56:01 C278C8                       priveda/fixed64/[mul.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -43,7 +43,7 @@ func (ob Fixed64) Mul(multiply ...Fixed64) Fixed64 {
 				}
 			}
 			if overflow {
-				return currencyOverflow(
+				return fixed64Overflow(
 					(a < 0 || b < 0) && (a > 0 || b > 0),
 					EOverflow, ": ", a, " * ", b, " = ", n,
 				)

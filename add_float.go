@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 C60510                 priveda/fixed64/[add_float.go]
+// :v: 2019-05-14 16:56:01 50BA50                 priveda/fixed64/[add_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -18,7 +18,7 @@ func (ob Fixed64) AddFloat(add ...float64) Fixed64 {
 		//
 		// check for overflow
 		if b < -lim || b > lim {
-			return currencyOverflow(
+			return fixed64Overflow(
 				(a < 0 || b < 0) && (a > 0 || b > 0),
 				EOverflow, ": ", a, " * ", b, " = ", float64(a)*b,
 			)

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 5A590E                 priveda/fixed64/[mul_float.go]
+// :v: 2019-05-14 16:56:01 D07BBC                 priveda/fixed64/[mul_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -17,7 +17,7 @@ func (ob Fixed64) MulFloat(multiply ...float64) Fixed64 {
 			lim = -lim
 		}
 		if b < -lim || b > lim {
-			return currencyOverflow(
+			return fixed64Overflow(
 				(a < 0 || b < 0) && (a > 0 || b > 0),
 				"Overflow: ", a, " * ", b, " = ", a*b,
 			)
