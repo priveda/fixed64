@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:17:01 97CCAA                    priveda/fixed64/[module.go]
+// :v: 2019-05-14 18:24:20 D31716                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -29,21 +29,25 @@ package fixed64
 //   (n Fixed64) Div(divide ...Fixed64) Fixed64
 //   (n Fixed64) DivFloat(divide ...float64) Fixed64
 //   (n Fixed64) DivInt(divide ...int) Fixed64
+//   (n Fixed64) DivInt64(nums ...int64) Fixed64
 //
 // # Multiplication:
 //   (n Fixed64) Mul(multiply ...Fixed64) Fixed64
 //   (n Fixed64) MulFloat(multiply ...float64) Fixed64
 //   (n Fixed64) MulInt(multiply ...int) Fixed64
+//   (n Fixed64) MulInt64(nums ...int64) Fixed64
 //
 // # Addition:
 //   (n Fixed64) Add(add ...Fixed64) Fixed64
 //   (n Fixed64) AddFloat(add ...float64) Fixed64
 //   (n Fixed64) AddInt(add ...int) Fixed64
+//   (n Fixed64) AddInt64(nums ...int64) Fixed64
 //
 // # Subtraction:
 //   (n Fixed64) Sub(subtract ...Fixed64) Fixed64
 //   (n Fixed64) SubFloat(subtract ...float64) Fixed64
 //   (n Fixed64) SubInt(subtract ...int) Fixed64
+//   (n Fixed64) SubInt64(nums ...int64) Fixed64
 //
 // # Information:
 //   (n Fixed64) Float64() float64
