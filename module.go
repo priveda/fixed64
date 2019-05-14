@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:45:40 C6C6C9                    priveda/fixed64/[module.go]
+// :v: 2019-05-14 18:14:00 7BBF7D                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -68,6 +68,10 @@ package fixed64
 // -----------------------------------------------------------------------------
 
 const (
+	// EInvalidValue error occurs when a string or another type
+	// can not be parsed or converted to the required data type.
+	EInvalidValue = "Invalid value"
+
 	// EOverflow indicates an arithmetic overflow.
 	EOverflow = "Overflow"
 
