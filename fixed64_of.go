@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 5AD982                priveda/fixed64/[fixed64_of.go]
+// :v: 2019-05-14 18:53:42 EC3A79                priveda/fixed64/[fixed64_of.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -22,143 +22,168 @@ import (
 // a string, to avoid hidden conversions and possible bugs.
 //
 func Fixed64Of(value interface{}) Fixed64 {
-	switch val := value.(type) {
+	switch v := value.(type) {
 	case Fixed64:
 		{
-			return val
-		}
-	// integers
-	case int8:
-		{
-			return Fixed64{int64(val) * 1E4}
-		}
-	case int16:
-		{
-			return Fixed64{int64(val) * 1E4}
-		}
-	case int32: //                              int32 and int could exceed range
-		{
-			return Fixed64Of(int64(val))
+			return v
 		}
 	case int:
 		{
-			return Fixed64Of(int64(val))
+			return Fixed64Of(int64(v))
 		}
 	case int64:
 		{
-			if val < -IntLimit || val > IntLimit {
-				return fixed64Overflow(val < 0, EOverflow, ": ", val)
+			if v < -IntLimit || v > IntLimit {
+				return fixed64Overflow(v < 0, EOverflow, ": ", v)
 			}
-			return Fixed64{int64(val) * 1E4}
-		}
-	// unsigned integers
-	case uint8:
-		{
-			return Fixed64{int64(val) * 1E4}
-		}
-	case uint16:
-		{
-			return Fixed64{int64(val) * 1E4}
-		}
-	case uint32: //                           uint32 and uint could exceed range
-		{
-			return Fixed64Of(uint64(val))
+			return Fixed64{int64(v) * 1E4}
 		}
 	case uint:
 		{
-			return Fixed64Of(uint64(val))
+			return Fixed64Of(uint64(v))
 		}
 	case uint64:
 		{
-			if val > IntLimit {
-				return fixed64Overflow(false, EOverflow, "uint64: ", val)
+			if v > IntLimit {
+				return fixed64Overflow(false, EOverflow, "uint64: ", v)
 			}
-			return Fixed64{int64(val) * 1E4}
-		}
-	// float
-	case float32:
-		{
-			if val < -float32(IntLimit)-0.9999 ||
-				val > float32(IntLimit)+0.9999 {
-				return fixed64Overflow(val < 0, EOverflow, "float32: ", val)
-			}
-			return Fixed64{int64(float64(val) * 1E4)}
+			return Fixed64{int64(v) * 1E4}
 		}
 	case float64:
 		{
-			if val < -float64(IntLimit)-0.9999 ||
-				val > float64(IntLimit)+0.9999 {
-				return fixed64Overflow(val < 0, EOverflow, "float64: ", val)
+			if v < -float64(IntLimit)-0.9999 ||
+				v > float64(IntLimit)+0.9999 {
+				return fixed64Overflow(v < 0, EOverflow, "float64: ", v)
 			}
-			return Fixed64{int64(val * 1E4)}
+			return Fixed64{int64(v * 1E4)}
 		}
-	// integer pointers
-	case *int:
-		if val != nil {
-			return Fixed64Of(int64(*val))
+	case string:
+		ret, _ := ParseFixed64(v)
+		return ret
+	}
+	ret, done := fixed64Of2(value) // try to convert other, less-common types
+	if done {
+		return ret
+	}
+	erm := fmt.Sprint("Type", reflect.TypeOf(value), "not handled; =", value)
+	mod.Error(erm)
+	return Fixed64{NaN}
+}
+
+// fixed64Of2 is a helper function for Fixed64Of().
+// It converts 8, 16 and 32-bit numeric types.
+func fixed64Of2(value interface{}) (Fixed64, bool) {
+	switch v := value.(type) {
+	case int32:
+		{
+			return Fixed64Of(int64(v)), true // call fn. to check range
 		}
-	case *int8:
-		if val != nil {
-			return Fixed64Of(*val)
+	case int16:
+		{
+			return Fixed64{int64(v) * 1E4}, true
 		}
-	case *int16:
-		if val != nil {
-			return Fixed64Of(*val)
+	case int8:
+		{
+			return Fixed64{int64(v) * 1E4}, true
 		}
-	case *int32:
-		if val != nil {
-			return Fixed64Of(*val)
+	case uint32:
+		{
+			return Fixed64Of(uint64(v)), true // call fn. to check range
 		}
+	case uint16:
+		{
+			return Fixed64{int64(v) * 1E4}, true
+		}
+	case uint8:
+		{
+			return Fixed64{int64(v) * 1E4}, true
+		}
+	case float32:
+		if v < -float32(IntLimit)-0.9999 ||
+			v > float32(IntLimit)+0.9999 {
+			return fixed64Overflow(v < 0, EOverflow, "float32: ", v), true
+		}
+		return Fixed64{int64(float64(v) * 1E4)}, true
+	}
+	return fixed64Of3(value) // try to convert pointer types
+}
+
+// fixed64Of3 is an indirect helper function for Fixed64Of().
+// It handles conversion from common pointer types and returns
+// Fixed64{NaN} when given a nil pointer.
+func fixed64Of3(value interface{}) (Fixed64, bool) {
+	if value == nil {
+		return Fixed64{NaN}, true
+	}
+	rval := reflect.ValueOf(value)
+	if rval.Kind() == reflect.Ptr && rval.IsNil() {
+		return Fixed64{NaN}, true
+	}
+	switch v := value.(type) {
 	case *int64:
-		if val != nil {
-			return Fixed64Of(*val)
+		{
+			return Fixed64Of(*v), true
 		}
-	// unsigned integer pointers
-	case *uint:
-		if val != nil {
-			return Fixed64Of(uint64(*val))
-		}
-	case *uint8:
-		if val != nil {
-			return Fixed64Of(*val)
-		}
-	case *uint16:
-		if val != nil {
-			return Fixed64Of(*val)
-		}
-	case *uint32:
-		if val != nil {
-			return Fixed64Of(*val)
+	case *int:
+		{
+			return Fixed64Of(int64(*v)), true
 		}
 	case *uint64:
-		if val != nil {
-			return Fixed64Of(*val)
+		{
+			return Fixed64Of(*v), true
 		}
-	// float pointers
-	case *float32:
-		if val != nil {
-			return Fixed64Of(*val)
+	case *uint:
+		{
+			return Fixed64Of(uint64(*v)), true
 		}
 	case *float64:
-		if val != nil {
-			return Fixed64Of(*val)
-		}
-	// strings
-	case string:
 		{
-			return Fixed64OfS(val)
+			return Fixed64Of(*v), true
 		}
 	case *string:
-		if val != nil {
-			return Fixed64OfS(*val)
-		}
-	case fmt.Stringer:
 		{
-			return Fixed64OfS(val.String())
+			return Fixed64Of(*v), true
 		}
 	}
-	mod.Error("Type", reflect.TypeOf(value), "not handled; =", value)
-	return Fixed64{}
+	return fixed64Of4(value)
+}
+
+// fixed64Of4 is an indirect helper function for Fixed64Of().
+// It handles conversion from pointers to smaller numeric types.
+func fixed64Of4(value interface{}) (Fixed64, bool) {
+	switch v := value.(type) {
+	case *int32:
+		{
+			return Fixed64Of(*v), true
+		}
+	case *int16:
+		{
+			return Fixed64Of(*v), true
+		}
+	case *int8:
+		{
+			return Fixed64Of(*v), true
+		}
+	case *uint32:
+		{
+			return Fixed64Of(*v), true
+		}
+	case *uint16:
+		{
+			return Fixed64Of(*v), true
+		}
+	case *uint8:
+		{
+			return Fixed64Of(*v), true
+		}
+	case *float32:
+		{
+			return Fixed64Of(*v), true
+		}
+	}
+	// value could not be converted by these conversion functions,
+	// pass false down the chain to Fixed64Of()
+	return Fixed64{NaN}, false
 }
 
 //end
