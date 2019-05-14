@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:56:01 AEDC88                    priveda/fixed64/[module.go]
+// :v: 2019-05-14 17:45:40 C6C6C9                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -19,48 +19,48 @@ package fixed64
 //   Fixed64Raw(raw int64) Fixed64
 //
 // # String Output:
-//   (ob Fixed64) GoString() string
-//   (ob Fixed64) Fmt(decimalPlaces int) string
-//   (ob Fixed64) InWordsEN(fmt string) string
-//   (ob Fixed64) String() string
+//   (n Fixed64) GoString() string
+//   (n Fixed64) Fmt(decimalPlaces int) string
+//   (n Fixed64) InWordsEN(fmt string) string
+//   (n Fixed64) String() string
 //
 // # Division:
-//   (ob Fixed64) Div(divide ...Fixed64) Fixed64
-//   (ob Fixed64) DivFloat(divide ...float64) Fixed64
-//   (ob Fixed64) DivInt(divide ...int) Fixed64
+//   (n Fixed64) Div(divide ...Fixed64) Fixed64
+//   (n Fixed64) DivFloat(divide ...float64) Fixed64
+//   (n Fixed64) DivInt(divide ...int) Fixed64
 //
 // # Multiplication:
-//   (ob Fixed64) Mul(multiply ...Fixed64) Fixed64
-//   (ob Fixed64) MulFloat(multiply ...float64) Fixed64
-//   (ob Fixed64) MulInt(multiply ...int) Fixed64
+//   (n Fixed64) Mul(multiply ...Fixed64) Fixed64
+//   (n Fixed64) MulFloat(multiply ...float64) Fixed64
+//   (n Fixed64) MulInt(multiply ...int) Fixed64
 //
 // # Addition:
-//   (ob Fixed64) Add(add ...Fixed64) Fixed64
-//   (ob Fixed64) AddFloat(add ...float64) Fixed64
-//   (ob Fixed64) AddInt(add ...int) Fixed64
+//   (n Fixed64) Add(add ...Fixed64) Fixed64
+//   (n Fixed64) AddFloat(add ...float64) Fixed64
+//   (n Fixed64) AddInt(add ...int) Fixed64
 //
 // # Subtraction:
-//   (ob Fixed64) Sub(subtract ...Fixed64) Fixed64
-//   (ob Fixed64) SubFloat(subtract ...float64) Fixed64
-//   (ob Fixed64) SubInt(subtract ...int) Fixed64
+//   (n Fixed64) Sub(subtract ...Fixed64) Fixed64
+//   (n Fixed64) SubFloat(subtract ...float64) Fixed64
+//   (n Fixed64) SubInt(subtract ...int) Fixed64
 //
 // # Information:
-//   (ob Fixed64) Float64() float64
-//   (ob Fixed64) Int() int
-//   (ob Fixed64) Int64() int64
-//   (ob Fixed64) IsEqual(val interface{}) bool
-//   (ob Fixed64) IsGreater(val interface{}) bool
-//   (ob Fixed64) IsGreaterOrEqual(val interface{}) bool
-//   (ob Fixed64) IsLesser(val interface{}) bool
-//   (ob Fixed64) IsLesserOrEqual(val interface{}) bool
-//   (ob Fixed64) IsNegative() bool
-//   (ob Fixed64) IsZero() bool
-//   (ob Fixed64) Overflow() int
-//   (ob Fixed64) Raw() int64
+//   (n Fixed64) Float64() float64
+//   (n Fixed64) Int() int
+//   (n Fixed64) Int64() int64
+//   (n Fixed64) IsEqual(val interface{}) bool
+//   (n Fixed64) IsGreater(val interface{}) bool
+//   (n Fixed64) IsGreaterOrEqual(val interface{}) bool
+//   (n Fixed64) IsLesser(val interface{}) bool
+//   (n Fixed64) IsLesserOrEqual(val interface{}) bool
+//   (n Fixed64) IsNegative() bool
+//   (n Fixed64) IsZero() bool
+//   (n Fixed64) Overflow() int
+//   (n Fixed64) Raw() int64
 //
 // # JSON:
-//   (ob Fixed64) MarshalJSON() ([]byte, error)
-//   (ob *Fixed64) UnmarshalJSON(data []byte) error
+//   (n Fixed64) MarshalJSON() ([]byte, error)
+//   (n *Fixed64) UnmarshalJSON(data []byte) error
 //
 // # Helper Function
 //   fixed64Overflow(isNegative bool, a ...interface{}) Fixed64

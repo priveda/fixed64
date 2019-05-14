@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:41:00 5F7B15                       priveda/fixed64/[fmt.go]
+// :v: 2019-05-14 17:45:40 D06FF1                       priveda/fixed64/[fmt.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -14,15 +14,15 @@ import (
 // and having the specified number of decimal places.
 // When decimalPlaces is negative, the resulting
 // number's decimals will vary.
-func (ob Fixed64) Fmt(decimalPlaces int) string {
+func (n Fixed64) Fmt(decimalPlaces int) string {
 	var (
 		retBuf  = bytes.NewBuffer(make([]byte, 0, 25))
 		ws      = retBuf.WriteString
 		wr      = retBuf.WriteRune
 		intLen  = 0
-		intPart = ob.i64 / 1E4         // integer part of the number
-		decPart = ob.i64 - intPart*1E4 // decimal part (as an int)
-		neg     = ob.i64 < 0           // is it negative? use absolute value
+		intPart = n.i64 / 1E4         // integer part of the number
+		decPart = n.i64 - intPart*1E4 // decimal part (as an int)
+		neg     = n.i64 < 0           // is it negative? use absolute value
 	)
 	if neg {
 		intPart = -intPart

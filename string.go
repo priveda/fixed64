@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 E9017E                    priveda/fixed64/[string.go]
+// :v: 2019-05-14 17:45:40 6255C7                    priveda/fixed64/[string.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -12,10 +12,10 @@ import (
 
 // String returns a string representing the fixed-point number
 // with up to 4 decimals and implements the Stringer interface.
-func (ob Fixed64) String() string {
+func (n Fixed64) String() string {
 	var (
-		i    = ob.i64 / 1E4             // integer value
-		d    = ob.i64 - i*1E4           // decimal value
+		i    = n.i64 / 1E4              // integer value
+		d    = n.i64 - i*1E4            // decimal value
 		sint = strconv.FormatInt(i, 10) // integer part
 		sdec string                     // decimal part
 	)

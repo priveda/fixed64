@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:41:00 79E694                       priveda/fixed64/[mul.go]
+// :v: 2019-05-14 17:45:40 54E506                       priveda/fixed64/[mul.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -11,10 +11,10 @@ import (
 
 // Mul multiplies a fixed-point number by one or more fixed-point
 // numbers and returns the result. The original number is not changed.
-func (ob Fixed64) Mul(multiply ...Fixed64) Fixed64 {
+func (n Fixed64) Mul(multiply ...Fixed64) Fixed64 {
 	for _, nb := range multiply {
 		var (
-			a = ob.i64
+			a = n.i64
 			b = nb.i64
 		)
 		// return zero if either number is zero
@@ -50,9 +50,9 @@ func (ob Fixed64) Mul(multiply ...Fixed64) Fixed64 {
 			}
 			return Fixed64{ret}
 		}
-		ob.i64 = a * b / 1E4
+		n.i64 = a * b / 1E4
 	}
-	return ob
+	return n
 }
 
 //end

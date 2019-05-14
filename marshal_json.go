@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 41B416              priveda/fixed64/[marshal_json.go]
+// :v: 2019-05-14 17:45:40 D49EEF              priveda/fixed64/[marshal_json.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -11,15 +11,15 @@ import (
 )
 
 // MarshalJSON returns the JSON encoding of Fixed64.
-func (ob Fixed64) MarshalJSON() ([]byte, error) {
+func (n Fixed64) MarshalJSON() ([]byte, error) {
 	//
 	// TODO: using fmt.Sprintf() may slow down performance.
 	//       There are faster ways to build a number with 4 decimals.
 	//       Create a benchmark to find the fastest method.
 	//
 	var (
-		i   = ob.i64 / 1E4   // integer part
-		d   = ob.i64 - i*1E4 // decimal part
+		i   = n.i64 / 1E4   // integer part
+		d   = n.i64 - i*1E4 // decimal part
 		ret = fmt.Sprintf("%d", i)
 	)
 	if d != 0 {

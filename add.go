@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 05CA1B                       priveda/fixed64/[add.go]
+// :v: 2019-05-14 17:45:40 F31254                       priveda/fixed64/[add.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -9,10 +9,10 @@ package fixed64
 // The original number on which Add() is called is not changed.
 // If there is an overflow, sets the number's internal value to
 // math.MaxInt64 (or math.minInt64+1 when the overflow is negative).
-func (ob Fixed64) Add(add ...Fixed64) Fixed64 {
+func (n Fixed64) Add(add ...Fixed64) Fixed64 {
 	for _, itm := range add {
 		var (
-			a = ob.i64
+			a = n.i64
 			b = itm.i64
 			c = a + b
 		)
@@ -23,9 +23,9 @@ func (ob Fixed64) Add(add ...Fixed64) Fixed64 {
 		if c > maxInt64 || (a > 0 && b > 0 && b > (maxInt64-a)) {
 			return fixed64Overflow(false, EOverflow, ": ", a, " + ", b)
 		}
-		ob.i64 = c
+		n.i64 = c
 	}
-	return ob
+	return n
 }
 
 //end
