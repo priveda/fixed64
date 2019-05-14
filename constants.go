@@ -1,11 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:27:00 3C0B92                 priveda/fixed64/[constants.go]
+// :v: 2019-05-14 17:01:08 A05C2F                 priveda/fixed64/[constants.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
 import (
+	"math"
 	"math/big"
 )
 
@@ -21,6 +22,13 @@ const (
 	// number minus 1, so that all decimals from .0000 to .9999. can be used.
 	IntLimit = 922337203685476
 
+	// NaN indicates a value that is not a number.
+	// Such values occur from dividing by zero, for example.
+	// NaN can also be used to represent null values, when needed.
+	NaN = math.MinInt64
+)
+
+const (
 	// minInt64 is the lowest int64 value for a Fixed64.
 	// This number is close to math.minInt64, but ensures it
 	// can store 4 full decimals when scaled (the 9999 part).
