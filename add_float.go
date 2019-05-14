@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 FA25BB                 priveda/fixed64/[add_float.go]
+// :v: 2019-05-14 16:42:36 C60510                 priveda/fixed64/[add_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -13,7 +13,7 @@ import (
 // object and returns the result. The object's value isn't changed.
 func (ob Fixed64) AddFloat(add ...float64) Fixed64 {
 	const lim float64 = math.MaxInt64 / 1E4
-	a := ob.val
+	a := ob.i64
 	for _, b := range add {
 		//
 		// check for overflow

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:27:00 2DA418                       priveda/fixed64/[mul.go]
+// :v: 2019-05-14 16:42:36 A1AA17                       priveda/fixed64/[mul.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -14,8 +14,8 @@ import (
 func (ob Fixed64) Mul(multiply ...Fixed64) Fixed64 {
 	for _, cur := range multiply {
 		var (
-			a = ob.val
-			b = cur.val
+			a = ob.i64
+			b = cur.i64
 		)
 		// return zero if either number is zero
 		if a == 0 || b == 0 {
@@ -50,7 +50,7 @@ func (ob Fixed64) Mul(multiply ...Fixed64) Fixed64 {
 			}
 			return Fixed64{ret}
 		}
-		ob.val = a * b / 1E4
+		ob.i64 = a * b / 1E4
 	}
 	return ob
 }

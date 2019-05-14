@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 F5299D            priveda/fixed64/[unmarshal_json.go]
+// :v: 2019-05-14 16:42:36 9C6F49            priveda/fixed64/[unmarshal_json.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -23,7 +23,7 @@ func (ob *Fixed64) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
-	ob.val = int64(num * 1E4)
+	ob.i64 = int64(num * 1E4)
 	return nil
 }
 

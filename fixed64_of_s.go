@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 51CEE0              priveda/fixed64/[fixed64_of_s.go]
+// :v: 2019-05-14 16:42:36 D4B3B0              priveda/fixed64/[fixed64_of_s.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -26,8 +26,8 @@ func Fixed64OfS(s string) Fixed64 {
 					break
 				}
 			}
-			ret.val *= 10
-			ret.val += int64(r - '0')
+			ret.i64 *= 10
+			ret.i64 += int64(r - '0')
 		} else if r != ',' &&
 			r != ' ' && r != '\a' && r != '\b' && r != '\f' &&
 			r != '\n' && r != '\r' && r != '\t' && r != '\v' {
@@ -37,10 +37,10 @@ func Fixed64OfS(s string) Fixed64 {
 	}
 	for dp < 4 {
 		dp++
-		ret.val *= 10
+		ret.i64 *= 10
 	}
 	if minus {
-		ret.val = -ret.val
+		ret.i64 = -ret.i64
 	}
 	return ret
 }

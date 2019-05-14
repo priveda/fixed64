@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 7B0647               priveda/fixed64/[in_words_en.go]
+// :v: 2019-05-14 16:42:36 1C1C8D               priveda/fixed64/[in_words_en.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -38,9 +38,9 @@ import (
 //          (11.02,"Euro")          "Eleven Euros"
 //          (11.02,"Pound;;;Pence") "Eleven Pounds and Two Pence"
 func (ob Fixed64) InWordsEN(fmt string) string {
-	n := ob.val
+	n := ob.i64
 	if n < 0 {
-		n = -ob.val
+		n = -ob.i64
 	}
 	var (
 		bigUnits = n / 1E4

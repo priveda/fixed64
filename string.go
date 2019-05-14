@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 648C91                    priveda/fixed64/[string.go]
+// :v: 2019-05-14 16:42:36 354E9A                    priveda/fixed64/[string.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -14,8 +14,8 @@ import (
 // and implements the Stringer Interface.
 func (ob Fixed64) String() string {
 	var (
-		i    = ob.val / 1E4             // integer value
-		d    = ob.val - i*1E4           // decimal value
+		i    = ob.i64 / 1E4             // integer value
+		d    = ob.i64 - i*1E4           // decimal value
 		sint = strconv.FormatInt(i, 10) // integer part
 		sdec string                     // decimal part
 	)

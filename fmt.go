@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 0788DC                       priveda/fixed64/[fmt.go]
+// :v: 2019-05-14 16:42:36 C82A93                       priveda/fixed64/[fmt.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -20,9 +20,9 @@ func (ob Fixed64) Fmt(decimalPlaces int) string {
 		ws      = retBuf.WriteString
 		wr      = retBuf.WriteRune
 		intLen  = 0
-		intPart = ob.val / 1E4         // integer part of the number
-		decPart = ob.val - intPart*1E4 // decimal part (as an int)
-		neg     = ob.val < 0           // is it negative? use absolute value
+		intPart = ob.i64 / 1E4         // integer part of the number
+		decPart = ob.i64 - intPart*1E4 // decimal part (as an int)
+		neg     = ob.i64 < 0           // is it negative? use absolute value
 	)
 	if neg {
 		intPart = -intPart

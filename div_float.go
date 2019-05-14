@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 7E047F                 priveda/fixed64/[div_float.go]
+// :v: 2019-05-14 16:42:36 7307EF                 priveda/fixed64/[div_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -9,8 +9,8 @@ package fixed64
 // numbers and returns the result. The object's value isn't changed.
 func (ob Fixed64) DivFloat(divide ...float64) Fixed64 {
 	for _, n := range divide {
-		ob.val *= 1E4
-		ob.val /= int64(n * 1E4)
+		ob.i64 *= 1E4
+		ob.i64 /= int64(n * 1E4)
 	}
 	return ob
 }

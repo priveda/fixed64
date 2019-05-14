@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 C2C714              priveda/fixed64/[marshal_json.go]
+// :v: 2019-05-14 16:42:36 2644A5              priveda/fixed64/[marshal_json.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -18,8 +18,8 @@ func (ob Fixed64) MarshalJSON() ([]byte, error) {
 	//       Create a benchmark to find the fastest method.
 	//
 	var (
-		i   = ob.val / 1E4   // integer part
-		d   = ob.val - i*1E4 // decimal part
+		i   = ob.i64 / 1E4   // integer part
+		d   = ob.i64 - i*1E4 // decimal part
 		ret = fmt.Sprintf("%d", i)
 	)
 	if d != 0 {
