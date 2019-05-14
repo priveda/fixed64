@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 B5CD7B                       priveda/fixed64/[fmt.go]
+// :v: 2019-05-14 17:41:00 5F7B15                       priveda/fixed64/[fmt.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -49,16 +49,16 @@ func (ob Fixed64) Fmt(decimalPlaces int) string {
 			digits = 3
 		}
 		for power > 0 {
-			n := intPart / power
-			if n > 0 {
+			x := intPart / power
+			if x > 0 {
 				write = true
 			}
-			intPart -= n * power
+			intPart -= x * power
 			power /= 10
 			if !write {
 				continue
 			}
-			wr(rune(n + 48))
+			wr(rune(x + 48))
 			digits--
 			if power > 0 && digits <= 0 {
 				ws(",")
@@ -78,13 +78,13 @@ func (ob Fixed64) Fmt(decimalPlaces int) string {
 		}
 		for decimalPlaces > 0 {
 			decimalPlaces--
-			n := int64(0)
+			x := int64(0)
 			if power > 0 {
-				n = decPart / power
-				decPart -= n * power
+				x = decPart / power
+				decPart -= x * power
 				power /= 10
 			}
-			wr(rune(n + 48))
+			wr(rune(x + 48))
 			if unfixed && decPart == 0 {
 				break
 			}

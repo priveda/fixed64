@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 DFFA52                       priveda/fixed64/[sub.go]
+// :v: 2019-05-14 17:41:00 CFDCF8                       priveda/fixed64/[sub.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -8,10 +8,10 @@ package fixed64
 // Sub subtracts one or more fixed-point numbers from a fixed-point
 // number and returns the result. The original number is not changed.
 func (ob Fixed64) Sub(subtract ...Fixed64) Fixed64 {
-	for _, n := range subtract {
+	for _, nb := range subtract {
 		var (
 			a = ob.i64
-			b = n.i64
+			b = nb.i64
 			c = a - b
 		)
 		// check for overflow

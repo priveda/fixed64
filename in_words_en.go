@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:42:36 1C1C8D               priveda/fixed64/[in_words_en.go]
+// :v: 2019-05-14 17:41:00 D1890E               priveda/fixed64/[in_words_en.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -38,13 +38,13 @@ import (
 //          (11.02,"Euro")          "Eleven Euros"
 //          (11.02,"Pound;;;Pence") "Eleven Pounds and Two Pence"
 func (ob Fixed64) InWordsEN(fmt string) string {
-	n := ob.i64
-	if n < 0 {
-		n = -ob.i64
+	i := ob.i64
+	if i < 0 {
+		i = -ob.i64
 	}
 	var (
-		bigUnits = n / 1E4
-		smlUnits = (n - bigUnits*1E4) / 100
+		bigUnits = i / 1E4
+		smlUnits = (i - bigUnits*1E4) / 100
 		hasOnly  = strings.HasSuffix(strings.ToLower(fmt), "only")
 	)
 	if hasOnly {
