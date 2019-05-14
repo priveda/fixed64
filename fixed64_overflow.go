@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 E6BF0C          priveda/fixed64/[fixed64_overflow.go]
+// :v: 2019-05-14 18:46:07 ADCD65          priveda/fixed64/[fixed64_overflow.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -18,8 +18,8 @@ import (
 // isNegative: should specify if the number is negative or positive.
 // ar: an array of values used to build the error message.
 //
-func fixed64Overflow(isNegative bool, a ...interface{}) Fixed64 {
-	mod.Error(a...)
+func fixed64Overflow(isNegative bool, ar ...interface{}) Fixed64 {
+	mod.Error(ar...)
 	if isNegative {
 		return Fixed64{math.MinInt64}
 	}

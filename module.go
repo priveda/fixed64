@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:24:20 D31716                    priveda/fixed64/[module.go]
+// :v: 2019-05-14 18:46:07 F3E239                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -26,38 +26,38 @@ package fixed64
 //   (n Fixed64) String() string
 //
 // # Division:
-//   (n Fixed64) Div(divide ...Fixed64) Fixed64
-//   (n Fixed64) DivFloat(divide ...float64) Fixed64
-//   (n Fixed64) DivInt(divide ...int) Fixed64
+//   (n Fixed64) Div(nums ...Fixed64) Fixed64
+//   (n Fixed64) DivFloat(nums ...float64) Fixed64
+//   (n Fixed64) DivInt(nums ...int) Fixed64
 //   (n Fixed64) DivInt64(nums ...int64) Fixed64
 //
 // # Multiplication:
-//   (n Fixed64) Mul(multiply ...Fixed64) Fixed64
-//   (n Fixed64) MulFloat(multiply ...float64) Fixed64
-//   (n Fixed64) MulInt(multiply ...int) Fixed64
+//   (n Fixed64) Mul(nums ...Fixed64) Fixed64
+//   (n Fixed64) MulFloat(nums ...float64) Fixed64
+//   (n Fixed64) MulInt(nums ...int) Fixed64
 //   (n Fixed64) MulInt64(nums ...int64) Fixed64
 //
 // # Addition:
-//   (n Fixed64) Add(add ...Fixed64) Fixed64
-//   (n Fixed64) AddFloat(add ...float64) Fixed64
-//   (n Fixed64) AddInt(add ...int) Fixed64
+//   (n Fixed64) Add(nums ...Fixed64) Fixed64
+//   (n Fixed64) AddFloat(nums ...float64) Fixed64
+//   (n Fixed64) AddInt(nums ...int) Fixed64
 //   (n Fixed64) AddInt64(nums ...int64) Fixed64
 //
 // # Subtraction:
-//   (n Fixed64) Sub(subtract ...Fixed64) Fixed64
-//   (n Fixed64) SubFloat(subtract ...float64) Fixed64
-//   (n Fixed64) SubInt(subtract ...int) Fixed64
+//   (n Fixed64) Sub(nums ...Fixed64) Fixed64
+//   (n Fixed64) SubFloat(nums ...float64) Fixed64
+//   (n Fixed64) SubInt(nums ...int) Fixed64
 //   (n Fixed64) SubInt64(nums ...int64) Fixed64
 //
 // # Information:
 //   (n Fixed64) Float64() float64
 //   (n Fixed64) Int() int
 //   (n Fixed64) Int64() int64
-//   (n Fixed64) IsEqual(val interface{}) bool
-//   (n Fixed64) IsGreater(val interface{}) bool
-//   (n Fixed64) IsGreaterOrEqual(val interface{}) bool
-//   (n Fixed64) IsLesser(val interface{}) bool
-//   (n Fixed64) IsLesserOrEqual(val interface{}) bool
+//   (n Fixed64) IsEqual(value interface{}) bool
+//   (n Fixed64) IsGreater(value interface{}) bool
+//   (n Fixed64) IsGreaterOrEqual(value interface{}) bool
+//   (n Fixed64) IsLesser(value interface{}) bool
+//   (n Fixed64) IsLesserOrEqual(value interface{}) bool
 //   (n Fixed64) IsNegative() bool
 //   (n Fixed64) IsZero() bool
 //   (n Fixed64) Overflow() int

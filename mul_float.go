@@ -1,22 +1,22 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:45:40 EC29E2                 priveda/fixed64/[mul_float.go]
+// :v: 2019-05-14 18:46:07 8BC961                 priveda/fixed64/[mul_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
 // MulFloat multiplies a fixed-point number by one or more floating-point
 // numbers and returns the result. The original number is not changed.
-func (n Fixed64) MulFloat(multiply ...float64) Fixed64 {
+func (n Fixed64) MulFloat(nums ...float64) Fixed64 {
 	a := float64(n.i64)
-	for _, b := range multiply {
+	for _, b := range nums {
 		//
 		// check for negative or positive overflow
-		lim := float64(maxInt64) / a
-		if lim < 0 {
-			lim = -lim
+		limit := float64(maxInt64) / a
+		if limit < 0 {
+			limit = -limit
 		}
-		if b < -lim || b > lim {
+		if b < -limit || b > limit {
 			return fixed64Overflow(
 				(a < 0 || b < 0) && (a > 0 || b > 0),
 				"Overflow: ", a, " * ", b, " = ", a*b,

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:45:40 54E506                       priveda/fixed64/[mul.go]
+// :v: 2019-05-14 18:46:07 E54514                       priveda/fixed64/[mul.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -11,22 +11,22 @@ import (
 
 // Mul multiplies a fixed-point number by one or more fixed-point
 // numbers and returns the result. The original number is not changed.
-func (n Fixed64) Mul(multiply ...Fixed64) Fixed64 {
-	for _, nb := range multiply {
+func (n Fixed64) Mul(nums ...Fixed64) Fixed64 {
+	for _, num := range nums {
 		var (
 			a = n.i64
-			b = nb.i64
+			b = num.i64
 		)
 		// return zero if either number is zero
 		if a == 0 || b == 0 {
 			return Fixed64{0}
 		}
 		// if direct multiplication will overflow int64, use big.Int
-		lim := maxInt64 / a
-		if lim < 0 {
-			lim = -lim
+		limit := maxInt64 / a
+		if limit < 0 {
+			limit = -limit
 		}
-		if b >= lim || b <= -lim {
+		if b >= limit || b <= -limit {
 			c := big.NewInt(a)
 			c.Mul(c, big.NewInt(b))
 			c.Div(c, big1E4)
