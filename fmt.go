@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:45:40 D06FF1                       priveda/fixed64/[fmt.go]
+// :v: 2019-05-14 18:55:09 7A97DD                       priveda/fixed64/[fmt.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -15,6 +15,9 @@ import (
 // When decimalPlaces is negative, the resulting
 // number's decimals will vary.
 func (n Fixed64) Fmt(decimalPlaces int) string {
+	if n.i64 == NaN {
+		return ""
+	}
 	var (
 		retBuf  = bytes.NewBuffer(make([]byte, 0, 25))
 		ws      = retBuf.WriteString
@@ -66,31 +69,40 @@ func (n Fixed64) Fmt(decimalPlaces int) string {
 			}
 		}
 	}
-	// write fractional part
 	if decimalPlaces != 0 {
-		power := int64(1000) // 10^3
-		unfixed := decPart > 0 && decimalPlaces < 0
-		if unfixed {
-			decimalPlaces = 4
-		}
-		if decimalPlaces > 0 {
-			ws(".")
-		}
-		for decimalPlaces > 0 {
-			decimalPlaces--
-			x := int64(0)
-			if power > 0 {
-				x = decPart / power
-				decPart -= x * power
-				power /= 10
-			}
-			wr(rune(x + 48))
-			if unfixed && decPart == 0 {
-				break
-			}
-		}
+		fixedNumFmtWriteDecimals(decimalPlaces, decPart, ws)
 	}
 	return retBuf.String()
+}
+
+// fixedNumFmtWriteDecimals writes the fractional part of a number
+// It is only called by Fixed64.Fmt()
+func fixedNumFmtWriteDecimals(
+	decimalPlaces int,
+	decPart int64,
+	ws func(string) (int, error),
+) {
+	power := int64(1000) // 10^3
+	unfixed := decPart > 0 && decimalPlaces < 0
+	if unfixed {
+		decimalPlaces = 4
+	}
+	if decimalPlaces > 0 {
+		ws(".")
+	}
+	for decimalPlaces > 0 {
+		decimalPlaces--
+		x := int64(0)
+		if power > 0 {
+			x = decPart / power
+			decPart -= x * power
+			power /= 10
+		}
+		ws(string(rune(x + 48)))
+		if unfixed && decPart == 0 {
+			break
+		}
+	}
 }
 
 //end
