@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 5C12A0                 priveda/fixed64/[constants.go]
+// :v: 2019-05-14 16:27:00 3C0B92                 priveda/fixed64/[constants.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	// Fixed64IntLimit specifies the highest (and lowest
+	// IntLimit specifies the highest (and lowest
 	// when negative) integer component that currency
 	// can hold, about 922.33 trillion.
 	// The exact number is 922(t)337(b)203(m)685,476.
@@ -19,13 +19,17 @@ const (
 	// up to 9,223,372,036,854,775,807. Out of this 4 digits are used for the
 	// decimal part, i.e. 922,337,203,685,477.5807. The limit is set to this
 	// number minus 1, so that all decimals from .0000 to .9999. can be used.
-	Fixed64IntLimit = 922337203685476
+	IntLimit = 922337203685476
 
-	// MinFixed64I64 is the lowest internal value that Fixed64 can hold.
-	MinFixed64I64 = -9223372036854769999
+	// minInt64 is the lowest int64 value for a Fixed64.
+	// This number is close to math.minInt64, but ensures it
+	// can store 4 full decimals when scaled (the 9999 part).
+	minInt64 int64 = -9223372036854769999
 
-	// MaxFixed64I64 is the highest internal value that Fixed64 can hold.
-	MaxFixed64I64 = 9223372036854769999
+	// maxInt64 is the highest int64 value for a Fixed64.
+	// This number is close to math.MaxInt64, but ensures it
+	// can store 4 full decimals when scaled (the 9999 part).
+	maxInt64 int64 = 9223372036854769999
 )
 
 var (

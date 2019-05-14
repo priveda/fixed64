@@ -1,14 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 D0905D                    priveda/fixed64/[module.go]
+// :v: 2019-05-14 16:27:00 FC6A2D                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
 // # Constants:
-//   Fixed64IntLimit
-//   MinFixed64I64
-//   MaxFixed64I64
+//   IntLimit
+//   minInt64
+//   maxInt64
 //
 // # Fixed64 Type:
 //   Fixed64 struct

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 79DED9                       priveda/fixed64/[mul.go]
+// :v: 2019-05-14 16:27:00 2DA418                       priveda/fixed64/[mul.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -22,7 +22,7 @@ func (ob Fixed64) Mul(multiply ...Fixed64) Fixed64 {
 			return Fixed64{0}
 		}
 		// if direct multiplication will overflow int64, use big.Int
-		lim := MaxFixed64I64 / a
+		lim := maxInt64 / a
 		if lim < 0 {
 			lim = -lim
 		}
@@ -38,7 +38,7 @@ func (ob Fixed64) Mul(multiply ...Fixed64) Fixed64 {
 			var ret int64
 			if !overflow {
 				ret = n.Int64()
-				if ret < MinFixed64I64 || ret > MaxFixed64I64 {
+				if ret < minInt64 || ret > maxInt64 {
 					overflow = true
 				}
 			}
