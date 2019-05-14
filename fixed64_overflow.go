@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:46:07 ADCD65          priveda/fixed64/[fixed64_overflow.go]
+// :v: 2019-05-14 18:58:50 1F2754          priveda/fixed64/[fixed64_overflow.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -21,7 +21,7 @@ import (
 func fixed64Overflow(isNegative bool, ar ...interface{}) Fixed64 {
 	mod.Error(ar...)
 	if isNegative {
-		return Fixed64{math.MinInt64}
+		return Fixed64{math.MinInt64 + 1}
 	}
 	return Fixed64{math.MaxInt64}
 }
