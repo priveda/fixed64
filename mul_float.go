@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 16:21:35 558858                 priveda/fixed64/[mul_float.go]
+// :v: 2019-05-14 16:26:00 7ED4BD                 priveda/fixed64/[mul_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -10,8 +10,9 @@ package fixed64
 func (ob Fixed64) MulFloat(multiply ...float64) Fixed64 {
 	a := float64(ob.val)
 	for _, b := range multiply {
+		//
 		// check for negative or positive overflow
-		lim := MaxFixed64I64 / a
+		lim := float64(maxInt64) / a
 		if lim < 0 {
 			lim = -lim
 		}
