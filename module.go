@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:46:15 A47FB4                    priveda/fixed64/[module.go]
+// :v: 2019-05-15 16:55:41 DF5A0B                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -67,17 +67,17 @@ package fixed64
 // -----------------------------------------------------------------------------
 // # Function Proxy Variables (for mocking)
 
-type thisMod struct {
+type mockable struct {
 	Error func(args ...interface{}) error
 }
 
-var mod = thisMod{
+var mod = mockable{
 	Error: logError,
 }
 
 // ModReset restores all mocked functions to the original standard functions.
-func (ob *thisMod) Reset() {
-	ob.Error = logError
+func (m *mockable) Reset() {
+	m.Error = logError
 }
 
 // logError __
