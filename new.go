@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 01:05:27 3B3B43                priveda/fixed64/[fixed64_of.go]
+// :v: 2019-05-15 16:28:01 89E8DD                       priveda/fixed64/[new.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -10,7 +10,7 @@ import (
 	"reflect"
 )
 
-// Fixed64Of converts any compatible type to a Fixed64. This includes all
+// New converts any compatible type to a Fixed64. This includes all
 // simple numeric types and strings, as well as pointers to these types.
 //
 // When given a non-numeric string, logs an error and returns Fixed64{NaN}
@@ -21,7 +21,7 @@ import (
 // Note that fmt.Stringer() is not automatically handled as
 // a string, to avoid hidden conversions and possible bugs.
 //
-func Fixed64Of(value interface{}) Fixed64 {
+func New(value interface{}) Fixed64 {
 	switch v := value.(type) {
 	case Fixed64:
 		{
@@ -29,7 +29,7 @@ func Fixed64Of(value interface{}) Fixed64 {
 		}
 	case int:
 		{
-			return Fixed64Of(int64(v))
+			return New(int64(v))
 		}
 	case int64:
 		{
@@ -40,7 +40,7 @@ func Fixed64Of(value interface{}) Fixed64 {
 		}
 	case uint:
 		{
-			return Fixed64Of(uint64(v))
+			return New(uint64(v))
 		}
 	case uint64:
 		{
@@ -61,7 +61,7 @@ func Fixed64Of(value interface{}) Fixed64 {
 		ret, _ := ParseFixed64(v)
 		return ret
 	}
-	ret, done := fixed64Of2(value) // try to convert other, less-common types
+	ret, done := new2(value) // try to convert other, less-common types
 	if done {
 		return ret
 	}
@@ -70,13 +70,13 @@ func Fixed64Of(value interface{}) Fixed64 {
 	return Fixed64{NaN}
 }
 
-// fixed64Of2 is a helper function for Fixed64Of().
+// new2 is a helper function for New().
 // It converts 8, 16 and 32-bit numeric types.
-func fixed64Of2(value interface{}) (Fixed64, bool) {
+func new2(value interface{}) (Fixed64, bool) {
 	switch v := value.(type) {
 	case int32:
 		{
-			return Fixed64Of(int64(v)), true // call fn. to check range
+			return New(int64(v)), true // call fn. to check range
 		}
 	case int16:
 		{
@@ -88,7 +88,7 @@ func fixed64Of2(value interface{}) (Fixed64, bool) {
 		}
 	case uint32:
 		{
-			return Fixed64Of(uint64(v)), true // call fn. to check range
+			return New(uint64(v)), true // call fn. to check range
 		}
 	case uint16:
 		{
@@ -105,13 +105,13 @@ func fixed64Of2(value interface{}) (Fixed64, bool) {
 		}
 		return Fixed64{int64(float64(v) * 1E4)}, true
 	}
-	return fixed64Of3(value) // try to convert pointer types
+	return new3(value) // try to convert pointer types
 }
 
-// fixed64Of3 is an indirect helper function for Fixed64Of().
+// new3 is an indirect helper function for New().
 // It handles conversion from common pointer types and returns
 // Fixed64{NaN} when given a nil pointer.
-func fixed64Of3(value interface{}) (Fixed64, bool) {
+func new3(value interface{}) (Fixed64, bool) {
 	if value == nil {
 		return Fixed64{NaN}, true
 	}
@@ -122,63 +122,63 @@ func fixed64Of3(value interface{}) (Fixed64, bool) {
 	switch v := value.(type) {
 	case *int64:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *int:
 		{
-			return Fixed64Of(int64(*v)), true
+			return New(int64(*v)), true
 		}
 	case *uint64:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *uint:
 		{
-			return Fixed64Of(uint64(*v)), true
+			return New(uint64(*v)), true
 		}
 	case *float64:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *string:
-		return Fixed64Of(*v), true
+		return New(*v), true
 	}
-	return fixed64Of4(value)
+	return new4(value)
 }
 
-// fixed64Of4 is an indirect helper function for Fixed64Of().
+// new4 is an indirect helper function for New().
 // It handles conversion from pointers to smaller numeric types.
-func fixed64Of4(value interface{}) (Fixed64, bool) {
+func new4(value interface{}) (Fixed64, bool) {
 	switch v := value.(type) {
 	case *int32:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *int16:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *int8:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *uint32:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *uint16:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *uint8:
 		{
-			return Fixed64Of(*v), true
+			return New(*v), true
 		}
 	case *float32:
-		return Fixed64Of(*v), true
+		return New(*v), true
 	}
-	// value could not be converted by these conversion functions,
-	// pass false down the chain to Fixed64Of()
+	// value could not be converted by these conversion
+	// functions, pass false down the chain to New()
 	return Fixed64{NaN}, false
 }
 

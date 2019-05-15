@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:21:27 2B239F                    priveda/fixed64/[module.go]
+// :v: 2019-05-15 16:28:01 766FC3                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -9,7 +9,7 @@ package fixed64
 //   Fixed64 struct
 //
 // # Fixed64 Factories:
-//   Fixed64Of(value interface{}) Fixed64
+//   New(value interface{}) Fixed64
 //   Fixed64Raw(raw int64) Fixed64
 //   ParseFixed64(s string) (Fixed64, error)
 //

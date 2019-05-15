@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-15 01:02:33 825B77                         memd/[fixed64_test.go]
+// :v: 2019-05-15 16:28:01 3D1B2D                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
 // # Fixed64 Factories:
-//   Test_Fixed64Of_
+//   Test_New_
 //   Test_Fixed64Raw_
 //   Test_ParseFixed64_
 //
@@ -60,7 +60,7 @@ package fixed64
 //   AF(nums ...float64) (ret []float64)
 //   AI(nums ...int) (ret []int)
 //   AN(nums ...Fixed64) (ret []Fixed64)
-//   N = Fixed64Of
+//   N = New
 
 //  to test all items in fixed_num.go use:
 //      go test --run Fixed64
@@ -80,14 +80,14 @@ import (
 // -----------------------------------------------------------------------------
 // # Fixed64 Factories:
 
-// go test --run Test_Fixed64Of_
-func Test_Fixed64Of_(t *testing.T) {
+// go test --run Test_New_
+func Test_New_(t *testing.T) {
 	//
-	// Fixed64Of(value interface{}) Fixed64
+	// New(value interface{}) Fixed64
 	//
 	test := func(input interface{}, want Fixed64) {
-		got := Fixed64Of(input)
-		label := fmt.Sprintf("<-L%d: Fixed64Of(%#v)", testLine(), input)
+		got := New(input)
+		label := fmt.Sprintf("<-L%d: New(%#v)", testLine(), input)
 		testGot(label, got.i64, want.i64, func(erm string) { t.Error(erm) })
 	}
 	// nil interface pointer
@@ -260,10 +260,10 @@ func Test_Fixed64Of_(t *testing.T) {
 		test(ptr, Fixed64{NaN})
 	}
 	testErr := func(input interface{}, want Fixed64) {
-		label := fmt.Sprintf("<-L%d: Fixed64Of(%#v)", testLine(), input)
+		label := fmt.Sprintf("<-L%d: New(%#v)", testLine(), input)
 		testErrors(label,
 			func() error {
-				got := Fixed64Of(input)
+				got := New(input)
 				testGot(label, got.i64, want.i64,
 					func(erm string) { t.Error(erm) })
 				return NoError
@@ -1795,6 +1795,6 @@ func AN(nums ...Fixed64) (ret []Fixed64) {
 	return ret
 }
 
-var N = Fixed64Of // a short Fixed64Of() alias used in many unit tests here
+var N = New // a short New() alias used in many unit tests here
 
 //end
