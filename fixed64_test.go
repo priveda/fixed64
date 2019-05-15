@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-15 16:28:01 3D1B2D                         memd/[fixed64_test.go]
+// :v: 2019-05-15 16:32:08 8C89C9                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -8,7 +8,7 @@ package fixed64
 // # Fixed64 Factories:
 //   Test_New_
 //   Test_Fixed64Raw_
-//   Test_ParseFixed64_
+//   Test_Parse_
 //
 // # String Output:
 //   Test_Fixed64_Fmt_
@@ -325,13 +325,13 @@ func Test_Fixed64Raw_(t *testing.T) {
 	test(NaN, Fixed64{NaN})
 }
 
-// go test --run Test_ParseFixed64_
-func Test_ParseFixed64_(t *testing.T) {
+// go test --run Test_Parse_
+func Test_Parse_(t *testing.T) {
 	//
 	test := func(s string, wantI64 int64, wantError bool) {
 		mockError(true)
 		var (
-			gotVal, gotErr = ParseFixed64(s)
+			gotVal, gotErr = Parse(s)
 		)
 		gotErm, wantErm := "nil", "nil"
 		if gotErr != nil {
@@ -344,7 +344,7 @@ func Test_ParseFixed64_(t *testing.T) {
 			got  = fmt.Sprintf("(%d, <%s>)", gotVal, gotErm)
 			want = fmt.Sprintf("(%d, <%s>)", Fixed64{wantI64}, wantErm)
 		)
-		label := fmt.Sprintf("<-L%d: ParseFixed64(%q) =", testLine(), s)
+		label := fmt.Sprintf("<-L%d: Parse(%q) =", testLine(), s)
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 		mockError(false)
 	}

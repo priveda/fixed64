@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:17:01 0CF261             priveda/fixed64/[parse_fixed64.go]
+// :v: 2019-05-15 16:32:08 33675D                     priveda/fixed64/[parse.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -10,14 +10,14 @@ import (
 	"unicode"
 )
 
-// ParseFixed64 converts a numeric string with up to 4 decimals to a Fixed64.
+// Parse converts a numeric string with up to 4 decimals to a Fixed64.
 //
 // If the input string is whitespace-only or is zero-length,
 // returns a null-value Fixed64{NaN} to and nil error.
 //
 // If the string is not numeric, returns NaN and an error (which is logged).
 //
-func ParseFixed64(s string) (Fixed64, error) {
+func Parse(s string) (Fixed64, error) {
 	var (
 		hasMinus bool  // has minus sign (negative result)
 		hasDP    bool  // has decimal point?

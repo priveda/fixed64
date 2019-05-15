@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:28:01 89E8DD                       priveda/fixed64/[new.go]
+// :v: 2019-05-15 16:32:08 06797E                       priveda/fixed64/[new.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -58,7 +58,7 @@ func New(value interface{}) Fixed64 {
 			return Fixed64{int64(v * 1E4)}
 		}
 	case string:
-		ret, _ := ParseFixed64(v)
+		ret, _ := Parse(v)
 		return ret
 	}
 	ret, done := new2(value) // try to convert other, less-common types
