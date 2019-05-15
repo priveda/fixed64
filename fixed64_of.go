@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:53:42 EC3A79                priveda/fixed64/[fixed64_of.go]
+// :v: 2019-05-15 01:05:27 3B3B43                priveda/fixed64/[fixed64_of.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -141,9 +141,7 @@ func fixed64Of3(value interface{}) (Fixed64, bool) {
 			return Fixed64Of(*v), true
 		}
 	case *string:
-		{
-			return Fixed64Of(*v), true
-		}
+		return Fixed64Of(*v), true
 	}
 	return fixed64Of4(value)
 }
@@ -177,9 +175,7 @@ func fixed64Of4(value interface{}) (Fixed64, bool) {
 			return Fixed64Of(*v), true
 		}
 	case *float32:
-		{
-			return Fixed64Of(*v), true
-		}
+		return Fixed64Of(*v), true
 	}
 	// value could not be converted by these conversion functions,
 	// pass false down the chain to Fixed64Of()

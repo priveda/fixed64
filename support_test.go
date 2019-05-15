@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-15 01:02:33 A5E71B                         memd/[support_test.go]
+// :v: 2019-05-15 01:05:27 ADCA45                         memd/[support_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -102,22 +102,18 @@ func testErrorsHelper(
 			erm = "failed to return error"
 		}
 	case !wantError && gotError:
-		{
-			erm = "detected unexpected error:\n"
-			if len(gotErm) == 0 {
-				erm += "<nil>"
-			} else {
-				erm += gotErm
-			}
+		erm = "detected unexpected error:\n"
+		if len(gotErm) == 0 {
+			erm += "<nil>"
+		} else {
+			erm += gotErm
 		}
 	case !wantError && err != nil:
-		{
-			erm = "returned unexpected error:\n"
-			if err == nil {
-				erm += "<nil>"
-			} else {
-				erm += err.Error()
-			}
+		erm = "returned unexpected error:\n"
+		if err == nil {
+			erm += "<nil>"
+		} else {
+			erm += err.Error()
 		}
 	}
 	if len(erm) > 0 {

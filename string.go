@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:57:21 FECEBB                    priveda/fixed64/[string.go]
+// :v: 2019-05-15 01:05:27 8B102B                    priveda/fixed64/[string.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -19,9 +19,7 @@ func (n Fixed64) String() string {
 			return ""
 		}
 	case 0:
-		{
-			return "0"
-		}
+		return "0"
 	}
 	var (
 		i    = n.i64 / 1E4              // integer value
