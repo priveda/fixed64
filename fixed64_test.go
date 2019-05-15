@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-15 16:32:08 8C89C9                         memd/[fixed64_test.go]
+// :v: 2019-05-15 16:40:45 3D507A                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -60,7 +60,6 @@ package fixed64
 //   AF(nums ...float64) (ret []float64)
 //   AI(nums ...int) (ret []int)
 //   AN(nums ...Fixed64) (ret []Fixed64)
-//   N = New
 
 //  to test all items in fixed_num.go use:
 //      go test --run Fixed64
@@ -397,7 +396,7 @@ func Test_Fixed64_Fmt_(t *testing.T) {
 	//
 	test := func(input interface{}, decimalPlaces int, want string) {
 		var (
-			n     = N(input)
+			n     = New(input)
 			got   = n.Fmt(decimalPlaces)
 			label = fmt.Sprintf("<-L%d: Fixed64<%s>.Fmt(%v) =",
 				testLine(), n, decimalPlaces)
@@ -686,16 +685,18 @@ func Test_Fixed64_Mul_(t *testing.T) {
 		}
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(N(-2), AN(N(2)), N(-4))
-	test(N(0), AN(N(0)), N(0))
-	test(N(1), AN(N(1)), N(1))
-	test(N(1000), AN(N(1000)), N(1000000))
-	test(N(2), AN(N(-2)), N(-4))
-	test(N(2), AN(N(2)), N(4))
+	test(New(-2), AN(New(2)), New(-4))
+	test(New(0), AN(New(0)), New(0))
+	test(New(1), AN(New(1)), New(1))
+	test(New(1000), AN(New(1000)), New(1000000))
+	test(New(2), AN(New(-2)), New(-4))
+	test(New(2), AN(New(2)), New(4))
 	//
 	// these would overflow if big.Int is not used
-	test(Fixed64{4611686018427384999}, AN(N(2)), Fixed64{9223372036854769998})
-	test(Fixed64{922337203685476999}, AN(N(10)), Fixed64{9223372036854769990})
+	test(Fixed64{4611686018427384999},
+		AN(New(2)), Fixed64{9223372036854769998})
+	test(Fixed64{922337203685476999},
+		AN(New(10)), Fixed64{9223372036854769990})
 	//
 	// tests that cause overflow
 	testOver := func(n Fixed64, nums []Fixed64, want Fixed64) {
@@ -719,26 +720,26 @@ func Test_Fixed64_Mul_(t *testing.T) {
 	// overflow: the result fits in int64, but not in acceptable Fixed64 range
 	testOver(
 		Fixed64{maxInt64 + 1},
-		AN(N(1)),
+		AN(New(1)),
 		Fixed64{math.MaxInt64},
 	)
 	testOver(
-		N(int64(-627199999000000)),
+		New(int64(-627199999000000)),
 		AN(Fixed64{627199999000000}),
 		Fixed64{math.MinInt64 + 1},
 	)
 	testOver(
-		N(int64(-922337203685476)),
+		New(int64(-922337203685476)),
 		AN(Fixed64{922337203685476}),
 		Fixed64{math.MinInt64 + 1},
 	)
 	testOver(
-		N(int64(627199999000000)),
+		New(int64(627199999000000)),
 		AN(Fixed64{627199999000000}),
 		Fixed64{math.MaxInt64},
 	)
 	testOver(
-		N(int64(922337203685476)),
+		New(int64(922337203685476)),
 		AN(Fixed64{922337203685476}),
 		Fixed64{math.MaxInt64},
 	)
@@ -837,22 +838,22 @@ func Test_Fixed64_MulFloat_(t *testing.T) {
 	//           12345.6789   /  2   =       24691.3578
 	test(Fixed64{123456789}, AF(2), Fixed64{246913578})
 	//
-	test(N(-1), AF(1e10), N(int64(-10000000000))) // -10 billion
-	test(N(-1), AF(1e6), N(-1000000))             // -1 million
-	test(N(-1), AF(1e7), N(-10000000))            // -10 million
-	test(N(-1), AF(1e8), N(-100000000))           // -100 million
-	test(N(-1), AF(1e9), N(-1000000000))          // -1 billion
+	test(New(-1), AF(1e10), New(int64(-10000000000))) // -10 billion
+	test(New(-1), AF(1e6), New(-1000000))             // -1 million
+	test(New(-1), AF(1e7), New(-10000000))            // -10 million
+	test(New(-1), AF(1e8), New(-100000000))           // -100 million
+	test(New(-1), AF(1e9), New(-1000000000))          // -1 billion
 	//
-	test(N(1), AF(1e10), N(int64(10000000000))) // 10 billion
-	test(N(1), AF(1e6), N(1000000))             // 1 million
-	test(N(1), AF(1e7), N(10000000))            // 10 million
-	test(N(1), AF(1e8), N(100000000))           // 100 million
-	test(N(1), AF(1e9), N(1000000000))          // 1 billion
+	test(New(1), AF(1e10), New(int64(10000000000))) // 10 billion
+	test(New(1), AF(1e6), New(1000000))             // 1 million
+	test(New(1), AF(1e7), New(10000000))            // 10 million
+	test(New(1), AF(1e8), New(100000000))           // 100 million
+	test(New(1), AF(1e9), New(1000000000))          // 1 billion
 	//
 	// Here, if Mul() didn't use big.Int, multiplication would overflow
-	test(N(-1), AF(1e14), Fixed64{int64(-1e18)})
-	test(N(1), AF(1e14), Fixed64{int64(1e18)})
-	test(N(123), AF(1e9), Fixed64{int64(123 * 1e13)}) // 123 billion
+	test(New(-1), AF(1e14), Fixed64{int64(-1e18)})
+	test(New(1), AF(1e14), Fixed64{int64(1e18)})
+	test(New(123), AF(1e9), Fixed64{int64(123 * 1e13)}) // 123 billion
 	//
 	// overflow
 	testOver := func(n Fixed64, nums []float64, want Fixed64) {
@@ -873,11 +874,11 @@ func Test_Fixed64_MulFloat_(t *testing.T) {
 			func(erm string) { t.Error(erm) },
 		)
 	}
-	testOver(N(1), AF(1e20),
+	testOver(New(1), AF(1e20),
 		Fixed64{math.MaxInt64})
-	testOver(N(123), AF(float64(maxInt64)),
+	testOver(New(123), AF(float64(maxInt64)),
 		Fixed64{math.MaxInt64})
-	testOver(N(123), AF(float64(minInt64)-0.001),
+	testOver(New(123), AF(float64(minInt64)-0.001),
 		Fixed64{math.MinInt64 + 1})
 }
 
@@ -934,9 +935,9 @@ func Test_Fixed64_MulInt64_(t *testing.T) {
 	test(Fixed64{-123 * 1E4}, []int64{2}, Fixed64{-246 * 1E4})
 	test(Fixed64{2 * 1E4}, []int64{2, 2, 2, 2, 2}, Fixed64{64 * 1E4})
 	test(Fixed64{2 * 1E4}, []int64{2}, Fixed64{4 * 1E4})
-	test(N(0), []int64{0}, Fixed64{0})
-	test(N(0), []int64{1, 3, 5, 7, 11}, Fixed64{0})
-	test(N(1), []int64{3, 5, 7}, Fixed64{105 * 1E4})
+	test(New(0), []int64{0}, Fixed64{0})
+	test(New(0), []int64{1, 3, 5, 7, 11}, Fixed64{0})
+	test(New(1), []int64{3, 5, 7}, Fixed64{105 * 1E4})
 	// TODO: add more test cases
 }
 
@@ -961,13 +962,15 @@ func Test_Fixed64_Add_(t *testing.T) {
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	// test additions within range of Fixed64:
-	test(N(-1), AN(N(-1)), N(-2))
-	test(N(0), AN(N(0)), N(0))
-	test(N(1), AN(N(1)), N(2))
-	test(N(1000), AN(N(1000)), N(2000))
+	test(New(-1), AN(New(-1)), New(-2))
+	test(New(0), AN(New(0)), New(0))
+	test(New(1), AN(New(1)), New(2))
+	test(New(1000), AN(New(1000)), New(2000))
 	//
 	// multiple additions:
-	test(N(1), AN(N(1.1), N(2.02), N(3.003), N(4.0004)), N(11.1234))
+	test(New(1),
+		AN(New(1.1), New(2.02), New(3.003), New(4.0004)),
+		New(11.1234))
 	//
 	// test addition close to the limits of Fixed64:
 	//
@@ -1088,11 +1091,11 @@ func Test_Fixed64_AddFloat_(t *testing.T) {
 		}
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(N(0), AF(0), N(0))
-	test(N(1), AF(1), N(2))
+	test(New(0), AF(0), New(0))
+	test(New(1), AF(1), New(2))
 	//
 	// test multiple arguments
-	test(N(1), AF(2, 3, 4), N(10))
+	test(New(1), AF(2, 3, 4), New(10))
 	//
 	// must overflow
 	testOver := func(n Fixed64, nums []float64, want Fixed64) {
@@ -1113,7 +1116,7 @@ func Test_Fixed64_AddFloat_(t *testing.T) {
 			func(erm string) { t.Error(erm) },
 		)
 	}
-	testOver(N(1), AF(1e30), Fixed64{math.MaxInt64})
+	testOver(New(1), AF(1e30), Fixed64{math.MaxInt64})
 }
 
 // go test --run Test_Fixed64_AddInt_
@@ -1133,7 +1136,7 @@ func Test_Fixed64_AddInt_(t *testing.T) {
 		}
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(N(0), AI(0), N(0))
+	test(New(0), AI(0), New(0))
 }
 
 // go test --run Test_Fixed64_AddInt64_
@@ -1155,8 +1158,8 @@ func Test_Fixed64_AddInt64_(t *testing.T) {
 	}
 	test(Fixed64{-12345 * 1E4}, []int64{12345}, Fixed64{0})
 	test(Fixed64{2 * 1E4}, []int64{2}, Fixed64{4 * 1E4})
-	test(N(0), []int64{0}, Fixed64{0})
-	test(N(0), []int64{1, 3, 5, 7, 11}, Fixed64{27 * 1E4})
+	test(New(0), []int64{0}, Fixed64{0})
+	test(New(0), []int64{1, 3, 5, 7, 11}, Fixed64{27 * 1E4})
 	// TODO: add more test cases
 }
 
@@ -1181,18 +1184,22 @@ func Test_Fixed64_Sub_(t *testing.T) {
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	// test subtractions within range of Fixed64:
-	test(N(-2), AN(N(-1)), N(-1))
-	test(N(0), AN(N(0)), N(0))
-	test(N(0), AN(N(0.0001)), N(-0.0001))
-	test(N(0.0001), AN(N(0.0001)), N(0))
-	test(N(1), AN(N(1)), N(0))
-	test(N(10), AN(N(1), N(2), N(3)), N(4))
-	test(N(2), AN(N(1)), N(1))
-	test(N(2000), AN(N(1000)), N(1000))
-	test(N(int64(1234567891234)), AN(N(67891234)), N(int64(1234500000000)))
+	test(New(-2), AN(New(-1)), New(-1))
+	test(New(0), AN(New(0)), New(0))
+	test(New(0), AN(New(0.0001)), New(-0.0001))
+	test(New(0.0001), AN(New(0.0001)), New(0))
+	test(New(1), AN(New(1)), New(0))
+	test(New(10), AN(New(1), New(2), New(3)), New(4))
+	test(New(2), AN(New(1)), New(1))
+	test(New(2000), AN(New(1000)), New(1000))
+	test(New(int64(1234567891234)),
+		AN(New(67891234)),
+		New(int64(1234500000000)))
 	//
 	// multiple subtractions:
-	test(N(11.1234), AN(N(4.0004), N(3.003), N(2.02), N(1.1)), N(1))
+	test(New(11.1234),
+		AN(New(4.0004), New(3.003), New(2.02), New(1.1)),
+		New(1))
 	//
 	// test subtraction close to the limits of Fixed64:
 	//
@@ -1311,11 +1318,11 @@ func Test_Fixed64_SubFloat_(t *testing.T) {
 		}
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(N(0), AF(0), N(0))
-	test(N(0), AF(123456789), N(-123456789))
-	test(N(0), AF(2, 3, 5, 7, 11), N(-28))
-	test(N(123456789), AF(123456789), N(0))
-	test(N(28), AF(2, 3, 5, 7, 11), N(0))
+	test(New(0), AF(0), New(0))
+	test(New(0), AF(123456789), New(-123456789))
+	test(New(0), AF(2, 3, 5, 7, 11), New(-28))
+	test(New(123456789), AF(123456789), New(0))
+	test(New(28), AF(2, 3, 5, 7, 11), New(0))
 	// TODO: add more test cases
 }
 
@@ -1336,11 +1343,11 @@ func Test_Fixed64_SubInt_(t *testing.T) {
 		}
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(N(0), AI(0), N(0))
-	test(N(0), AI(123456789), N(-123456789))
-	test(N(0), AI(2, 3, 5, 7, 11), N(-28))
-	test(N(123456789), AI(123456789), N(0))
-	test(N(28), AI(2, 3, 5, 7, 11), N(0))
+	test(New(0), AI(0), New(0))
+	test(New(0), AI(123456789), New(-123456789))
+	test(New(0), AI(2, 3, 5, 7, 11), New(-28))
+	test(New(123456789), AI(123456789), New(0))
+	test(New(28), AI(2, 3, 5, 7, 11), New(0))
 	// TODO: add more test cases
 }
 
@@ -1364,8 +1371,8 @@ func Test_Fixed64_SubInt64_(t *testing.T) {
 	test(Fixed64{-12345 * 1E4}, []int64{-12345}, Fixed64{0})
 	test(Fixed64{12345 * 1E4}, []int64{12345}, Fixed64{0})
 	test(Fixed64{4 * 1E4}, []int64{2}, Fixed64{2 * 1E4})
-	test(N(0), []int64{0}, Fixed64{0})
-	test(N(0), []int64{1, 3, 5, 7, 11}, Fixed64{-27 * 1E4})
+	test(New(0), []int64{0}, Fixed64{0})
+	test(New(0), []int64{1, 3, 5, 7, 11}, Fixed64{-27 * 1E4})
 	// TODO: add more test cases
 }
 
@@ -1388,9 +1395,9 @@ func Test_Fixed64_Float64_(t *testing.T) {
 	test(Fixed64{1}, 0.0001)
 	test(Fixed64{maxInt64}, 9.22337203685477e+14)
 	test(Fixed64{minInt64}, -9.22337203685477e+14)
-	test(N(0), 0.0)
-	test(N(1234567890), 1234567890)
-	test(N(987654321), 987654321)
+	test(New(0), 0.0)
+	test(New(1234567890), 1234567890)
+	test(New(987654321), 987654321)
 }
 
 // go test --run Test_Fixed64_Int_
@@ -1403,9 +1410,9 @@ func Test_Fixed64_Int_(t *testing.T) {
 		got := n.Int()
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(N(-1), -1)
-	test(N(0), 0)
-	test(N(1), 1)
+	test(New(-1), -1)
+	test(New(0), 0)
+	test(New(1), 1)
 	// TODO: add more test cases
 }
 
@@ -1419,9 +1426,9 @@ func Test_Fixed64_Int64_(t *testing.T) {
 		got := n.Int64()
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(N(-1), -1)
-	test(N(0), 0)
-	test(N(1), 1)
+	test(New(-1), -1)
+	test(New(0), 0)
+	test(New(1), 1)
 	// TODO: add more test cases
 }
 
@@ -1436,10 +1443,10 @@ func Test_Fixed64_IsEqual_(t *testing.T) {
 		got := n.IsEqual(num)
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(N(0), N(0), true)
-	test(N(0), N(1), false)
-	test(N(1), N(0), false)
-	test(N(1), N(1), true)
+	test(New(0), New(0), true)
+	test(New(0), New(1), false)
+	test(New(1), New(0), false)
+	test(New(1), New(1), true)
 	// TODO: add more test cases
 }
 
@@ -1455,14 +1462,14 @@ func Test_Fixed64_IsGreater_(t *testing.T) {
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	{
-		test(N(0), N(-1), true)
-		test(N(1), N(0), true)
-		test(N(100), N(-200), true)
+		test(New(0), New(-1), true)
+		test(New(1), New(0), true)
+		test(New(100), New(-200), true)
 	}
 	{
-		test(N(-1), N(-1), false)
-		test(N(0), N(1), false)
-		test(N(1), N(1), false)
+		test(New(-1), New(-1), false)
+		test(New(0), New(1), false)
+		test(New(1), New(1), false)
 	}
 	// TODO: add more test cases
 }
@@ -1479,17 +1486,17 @@ func Test_Fixed64_IsGreaterOrEqual_(t *testing.T) {
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	{
-		test(N(-200), N(-200), true)
-		test(N(0), N(-1), true)
-		test(N(0), N(0), true)
-		test(N(1), N(0), true)
-		test(N(1), N(1), true)
-		test(N(100), N(-200), true)
+		test(New(-200), New(-200), true)
+		test(New(0), New(-1), true)
+		test(New(0), New(0), true)
+		test(New(1), New(0), true)
+		test(New(1), New(1), true)
+		test(New(100), New(-200), true)
 	}
 	{
-		test(N(-2), N(-1), false)
-		test(N(0), N(1), false)
-		test(N(1), N(2), false)
+		test(New(-2), New(-1), false)
+		test(New(0), New(1), false)
+		test(New(1), New(2), false)
 	}
 	// TODO: add more test cases
 }
@@ -1506,14 +1513,14 @@ func Test_Fixed64_IsLesser_(t *testing.T) {
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	{
-		test(N(-1), N(0), true)
-		test(N(0), N(1), true)
-		test(N(-200), N(100), true)
+		test(New(-1), New(0), true)
+		test(New(0), New(1), true)
+		test(New(-200), New(100), true)
 	}
 	{
-		test(N(-1), N(-1), false)
-		test(N(1), N(0), false)
-		test(N(1), N(1), false)
+		test(New(-1), New(-1), false)
+		test(New(1), New(0), false)
+		test(New(1), New(1), false)
 	}
 	// TODO: add more test cases
 }
@@ -1530,17 +1537,17 @@ func Test_Fixed64_IsLesserOrEqual_(t *testing.T) {
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	{
-		test(N(-200), N(-200), true)
-		test(N(-1), N(0), true)
-		test(N(0), N(0), true)
-		test(N(0), N(1), true)
-		test(N(1), N(1), true)
-		test(N(-200), N(100), true)
+		test(New(-200), New(-200), true)
+		test(New(-1), New(0), true)
+		test(New(0), New(0), true)
+		test(New(0), New(1), true)
+		test(New(1), New(1), true)
+		test(New(-200), New(100), true)
 	}
 	{
-		test(N(-1), N(-2), false)
-		test(N(1), N(0), false)
-		test(N(2), N(1), false)
+		test(New(-1), New(-2), false)
+		test(New(1), New(0), false)
+		test(New(2), New(1), false)
 	}
 	// TODO: add more test cases
 }
@@ -1558,15 +1565,15 @@ func Test_Fixed64_IsNegative_(t *testing.T) {
 	}
 	{
 		test(Fixed64{minInt64}, true)
-		test(N(-1), true)
-		test(N(-1000), true)
+		test(New(-1), true)
+		test(New(-1000), true)
 	}
 	{
 		test(Fixed64{NaN}, false)
 		test(Fixed64{maxInt64}, false)
-		test(N(0), false)
-		test(N(1), false)
-		test(N(1000), false)
+		test(New(0), false)
+		test(New(1), false)
+		test(New(1000), false)
 	}
 	// TODO: add more test cases
 }
@@ -1584,28 +1591,28 @@ func Test_Fixed64_IsZero_(t *testing.T) {
 	}
 	{
 		test(Fixed64{0}, true)
-		test(N("-0.00001"), true) // because this is > 4 decimal places
-		test(N("0"), true)
-		test(N("00"), true)
-		test(N(0), true)
-		test(N(float32(0)), true)
-		test(N(float64(0)), true)
+		test(New("-0.00001"), true) // because this is > 4 decimal places
+		test(New("0"), true)
+		test(New("00"), true)
+		test(New(0), true)
+		test(New(float32(0)), true)
+		test(New(float64(0)), true)
 	}
 	{
 		test(Fixed64{-1}, false)
 		test(Fixed64{1}, false)
 		test(Fixed64{maxInt64}, false)
 		test(Fixed64{minInt64}, false)
-		test(N(""), false) // this is null, not zero
-		test(N("-0.0001"), false)
-		test(N("-922337203685476.9999"), false) // lowest fixed-point number
-		test(N("0.0001"), false)
-		test(N("1"), false)
-		test(N("922337203685476.9999"), false) // highest fixed-point number
-		test(N(-1), false)
-		test(N(-1000), false)
-		test(N(1), false)
-		test(N(1000), false)
+		test(New(""), false) // this is null, not zero
+		test(New("-0.0001"), false)
+		test(New("-922337203685476.9999"), false) // lowest fixed-point number
+		test(New("0.0001"), false)
+		test(New("1"), false)
+		test(New("922337203685476.9999"), false) // highest fixed-point number
+		test(New(-1), false)
+		test(New(-1000), false)
+		test(New(1), false)
+		test(New(1000), false)
 	}
 	// TODO: add more test cases
 	//
@@ -1655,9 +1662,9 @@ func Test_Fixed64_Raw_(t *testing.T) {
 	test(Fixed64{-123456789 * 1E4}, -1234567890000)
 	test(Fixed64{0}, 0)
 	test(Fixed64{1 * 1E4}, 10000)
-	test(N(-123456789), -1234567890000)
-	test(N(0), 0)
-	test(N(1), 10000)
+	test(New(-123456789), -1234567890000)
+	test(New(0), 0)
+	test(New(1), 10000)
 }
 
 // -----------------------------------------------------------------------------
@@ -1671,7 +1678,7 @@ func Test_Fixed64_MarshalJSON_(t *testing.T) {
 	test := func(input interface{}, want string) {
 		type Struct struct{ Num Fixed64 }
 		var box Struct
-		box.Num = N(input)
+		box.Num = New(input)
 		script, _ := json.MarshalIndent(box, "", " ")
 		//                  ^ calls the number's MarshalIndent() method
 		got := string(script)
@@ -1736,7 +1743,7 @@ func Test_Fixed64_UnmarshalJSON_(t *testing.T) {
 			t.Errorf("%s error: %s", label, err)
 		}
 		got := n
-		want := N(1234567)
+		want := New(1234567)
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	{
@@ -1790,11 +1797,9 @@ func AI(nums ...int) (ret []int) {
 // you can just use 'AN(1, 2, 3)'.
 func AN(nums ...Fixed64) (ret []Fixed64) {
 	for _, num := range nums {
-		ret = append(ret, N(num))
+		ret = append(ret, New(num))
 	}
 	return ret
 }
-
-var N = New // a short New() alias used in many unit tests here
 
 //end
