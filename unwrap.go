@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:45:40 E99291                       priveda/fixed64/[raw.go]
+// :v: 2019-05-15 16:46:15 5567C8                    priveda/fixed64/[unwrap.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
-// Raw returns the internal int64 used to store the fixed-point number.
-func (n Fixed64) Raw() int64 {
+// Unwrap returns the internal int64 used to store the fixed-point number.
+func (n Fixed64) Unwrap() int64 {
 	return n.i64
 }
 

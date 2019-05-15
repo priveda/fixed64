@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:44:38 B98EEC                    priveda/fixed64/[module.go]
+// :v: 2019-05-15 16:46:15 A47FB4                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -55,7 +55,7 @@ package fixed64
 //   (n Fixed64) IsNegative() bool
 //   (n Fixed64) IsZero() bool
 //   (n Fixed64) Overflow() int
-//   (n Fixed64) Raw() int64
+//   (n Fixed64) Unwrap() int64
 //
 // # JSON:
 //   (n Fixed64) MarshalJSON() ([]byte, error)

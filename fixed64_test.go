@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-15 16:44:38 3CC051                         memd/[fixed64_test.go]
+// :v: 2019-05-15 16:46:15 8351D1                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -50,7 +50,7 @@ package fixed64
 //   Test_Fixed64_IsNegative_
 //   Test_Fixed64_IsZero_
 //   Test_Fixed64_Overflow_
-//   Test_Fixed64_Raw_
+//   Test_Fixed64_Unwrap_
 //
 // # JSON:
 //   Test_Fixed64_MarshalJSON_
@@ -1649,14 +1649,14 @@ func Test_Fixed64_Overflow_(t *testing.T) {
 	}
 }
 
-// go test --run Test_Fixed64_Raw_
-func Test_Fixed64_Raw_(t *testing.T) {
+// go test --run Test_Fixed64_Unwrap_
+func Test_Fixed64_Unwrap_(t *testing.T) {
 	//
-	// (n Fixed64) Raw() int64
+	// (n Fixed64) Unwrap() int64
 	//
 	test := func(n Fixed64, want int64) {
-		label := fmt.Sprintf("<-L%d: Fixed64<%s>.Raw() =", testLine(), n)
-		got := n.Raw()
+		label := fmt.Sprintf("<-L%d: Fixed64<%s>.Unwrap() =", testLine(), n)
+		got := n.Unwrap()
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	test(Fixed64{-123456789 * 1E4}, -1234567890000)
