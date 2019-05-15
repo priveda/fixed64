@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 2EFCA5                 priveda/fixed64/[constants.go]
+// :v: 2019-05-15 01:10:29 DB74B0                 priveda/fixed64/[constants.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -11,6 +11,16 @@ import (
 )
 
 const (
+	// EInvalidValue error occurs when a string or another type
+	// can not be parsed or converted to the required data type.
+	EInvalidValue = "Invalid value"
+
+	// EOverflow indicates an arithmetic overflow.
+	EOverflow = "Overflow"
+
+	// ENilReceiver indicates a method call on a nil object.
+	ENilReceiver = "nil receiver"
+
 	// IntLimit specifies the highest (and lowest when negative)
 	// integer component that the fixed-point type can hold,
 	// about 922.33 trillion.

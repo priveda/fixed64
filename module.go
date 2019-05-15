@@ -1,15 +1,10 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:46:07 F3E239                    priveda/fixed64/[module.go]
+// :v: 2019-05-15 01:10:29 35FA7E                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
-// # Constants:
-//   IntLimit
-//   minInt64
-//   maxInt64
-//
 // # Fixed64 Type:
 //   Fixed64 struct
 //
@@ -69,20 +64,6 @@ package fixed64
 //
 // # Helper Function
 //   fixed64Overflow(isNegative bool, a ...interface{}) Fixed64
-
-// -----------------------------------------------------------------------------
-
-const (
-	// EInvalidValue error occurs when a string or another type
-	// can not be parsed or converted to the required data type.
-	EInvalidValue = "Invalid value"
-
-	// EOverflow indicates an arithmetic overflow.
-	EOverflow = "Overflow"
-
-	// ENilReceiver indicates a method call on a nil object.
-	ENilReceiver = "nil receiver"
-)
 
 // -----------------------------------------------------------------------------
 // # Function Proxy Variables (for mocking)
