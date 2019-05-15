@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:55:41 DF5A0B                    priveda/fixed64/[module.go]
+// :v: 2019-05-15 16:56:23 EE7AB0                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -67,20 +67,23 @@ package fixed64
 // -----------------------------------------------------------------------------
 // # Function Proxy Variables (for mocking)
 
+// mockable defines mockable functions used by this package
 type mockable struct {
 	Error func(args ...interface{}) error
 }
 
+// mod is the single instance of mockable
 var mod = mockable{
 	Error: logError,
 }
 
-// ModReset restores all mocked functions to the original standard functions.
+// Reset restores all mocked functions to the original standard functions.
 func (m *mockable) Reset() {
 	m.Error = logError
 }
 
-// logError __
+// logError logs error conditions to a log file.
+// (by default it does nothing)
 func logError(args ...interface{}) error {
 	return nil
 }
