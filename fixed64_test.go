@@ -1,14 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-15 16:40:45 3D507A                         memd/[fixed64_test.go]
+// :v: 2019-05-15 16:44:38 3CC051                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
 
 // # Fixed64 Factories:
 //   Test_New_
-//   Test_Fixed64Raw_
 //   Test_Parse_
+//   Test_Wrap_
 //
 // # String Output:
 //   Test_Fixed64_Fmt_
@@ -308,22 +308,6 @@ func Test_New_(t *testing.T) {
 	}
 }
 
-// go test --run Test_Fixed64Raw_
-func Test_Fixed64Raw_(t *testing.T) {
-	//
-	// Fixed64Raw(raw int64) Fixed64
-	//
-	test := func(raw int64, want Fixed64) {
-		label := fmt.Sprintf("<-L%d: Fixed64Raw(%d) =", testLine(), raw)
-		got := Fixed64Raw(raw)
-		testGot(label, got, want, func(erm string) { t.Error(erm) })
-	}
-	test(-1, Fixed64{-1})
-	test(0, Fixed64{0})
-	test(1, Fixed64{1})
-	test(NaN, Fixed64{NaN})
-}
-
 // go test --run Test_Parse_
 func Test_Parse_(t *testing.T) {
 	//
@@ -384,6 +368,22 @@ func Test_Parse_(t *testing.T) {
 	test("0.12345", 0*1E4+1234, false)
 	test("123456", 123456*1E4, false)
 	test("abc", NaN, true)
+}
+
+// go test --run Test_Wrap_
+func Test_Wrap_(t *testing.T) {
+	//
+	// Wrap(i64 int64) Fixed64
+	//
+	test := func(i64 int64, want Fixed64) {
+		label := fmt.Sprintf("<-L%d: Wrap(%d) =", testLine(), i64)
+		got := Wrap(i64)
+		testGot(label, got, want, func(erm string) { t.Error(erm) })
+	}
+	test(-1, Fixed64{-1})
+	test(0, Fixed64{0})
+	test(1, Fixed64{1})
+	test(NaN, Fixed64{NaN})
 }
 
 // -----------------------------------------------------------------------------
