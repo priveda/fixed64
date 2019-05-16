@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:32:08 06797E                       priveda/fixed64/[new.go]
+// :v: 2019-05-16 17:00:57 AE4636                       priveda/fixed64/[new.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -120,21 +120,21 @@ func new3(value interface{}) (Fixed64, bool) {
 		return Fixed64{NaN}, true
 	}
 	switch v := value.(type) {
-	case *int64:
-		{
-			return New(*v), true
-		}
 	case *int:
 		{
 			return New(int64(*v)), true
 		}
-	case *uint64:
+	case *int64:
 		{
 			return New(*v), true
 		}
 	case *uint:
 		{
 			return New(uint64(*v)), true
+		}
+	case *uint64:
+		{
+			return New(*v), true
 		}
 	case *float64:
 		{
