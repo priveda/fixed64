@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:32:08 33675D                     priveda/fixed64/[parse.go]
+// :v: 2019-05-17 08:23:43 2DA55C                     priveda/fixed64/[parse.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -13,7 +13,7 @@ import (
 // Parse converts a numeric string with up to 4 decimals to a Fixed64.
 //
 // If the input string is whitespace-only or is zero-length,
-// returns a null-value Fixed64{NaN} to and nil error.
+// returns a zero-value Fixed64{0} and no error.
 //
 // If the string is not numeric, returns NaN and an error (which is logged).
 //
@@ -61,7 +61,7 @@ func Parse(s string) (Fixed64, error) {
 		count++
 	}
 	if count == 0 {
-		return Fixed64{NaN}, nil
+		return Fixed64{0}, nil
 	}
 	for decs < 4 {
 		decs++

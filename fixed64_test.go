@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-15 16:46:15 8351D1                         memd/[fixed64_test.go]
+// :v: 2019-05-17 08:23:43 AD6EDB                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -98,8 +98,8 @@ func Test_New_(t *testing.T) {
 	test(int64(922337203685476), Fixed64{922337203685476 * 1E4})
 	//
 	// strings
-	test(" ", Fixed64{NaN})
-	test("", Fixed64{NaN})
+	test(" ", Fixed64{0})
+	test("", Fixed64{0})
 	test("-922337203685476", Fixed64{-922337203685476 * 1E4})
 	test("1.01", Fixed64{1.01 * 1E4})
 	test("922337203685476", Fixed64{922337203685476 * 1E4})
@@ -331,13 +331,13 @@ func Test_Parse_(t *testing.T) {
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 		mockError(false)
 	}
-	// spaces without any digits -> 0, ENullValue error
-	test("   ", NaN, false)
-	test("  ", NaN, false)
-	test(" ", NaN, false)
-	test("", NaN, false)
-	test("\t", NaN, false)
-	test("\t\t", NaN, false)
+	// spaces without any digits -> 0, no error
+	test("   ", 0, false)
+	test("  ", 0, false)
+	test(" ", 0, false)
+	test("", 0, false)
+	test("\t", 0, false)
+	test("\t\t", 0, false)
 	//
 	// zeros
 	test(" +0 ", 0, false)
@@ -434,7 +434,7 @@ func Test_Fixed64_Fmt_(t *testing.T) {
 	test("1234.56789", 5, "1,234.56780")
 	//
 	// 0 digits
-	test("", 0, "")
+	test("", 0, "0")
 	//
 	// 1 digit
 	test(-1, 0, "-1")
@@ -1591,6 +1591,7 @@ func Test_Fixed64_IsZero_(t *testing.T) {
 	}
 	{
 		test(Fixed64{0}, true)
+		test(New(""), true)
 		test(New("-0.00001"), true) // because this is > 4 decimal places
 		test(New("0"), true)
 		test(New("00"), true)
@@ -1603,7 +1604,6 @@ func Test_Fixed64_IsZero_(t *testing.T) {
 		test(Fixed64{1}, false)
 		test(Fixed64{maxInt64}, false)
 		test(Fixed64{minInt64}, false)
-		test(New(""), false) // this is null, not zero
 		test(New("-0.0001"), false)
 		test(New("-922337203685476.9999"), false) // lowest fixed-point number
 		test(New("0.0001"), false)
