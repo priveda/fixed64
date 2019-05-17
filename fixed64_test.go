@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-17 08:23:43 AD6EDB                         memd/[fixed64_test.go]
+// :v: 2019-05-17 10:22:09 906ED7                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -103,6 +103,13 @@ func Test_New_(t *testing.T) {
 	test("-922337203685476", Fixed64{-922337203685476 * 1E4})
 	test("1.01", Fixed64{1.01 * 1E4})
 	test("922337203685476", Fixed64{922337203685476 * 1E4})
+	//
+	//
+	// NaN == math.MinInt64
+	test(NaN, Fixed64{NaN})
+	test(NaN, Fixed64{math.MinInt64})
+	test(int64(math.MinInt64), Fixed64{NaN})
+	test(int64(math.MinInt64), Fixed64{math.MinInt64})
 	//
 	// integers
 	test(int(-123456), Fixed64{-(123456 * 1E4)})
@@ -293,12 +300,6 @@ func Test_New_(t *testing.T) {
 			n := int64(math.MaxInt64)
 			testErr(&n, Fixed64{math.MaxInt64})
 		}
-		// min int64
-		testErr(int64(math.MinInt64), Fixed64{math.MinInt64 + 1})
-		{
-			n := int64(math.MinInt64)
-			testErr(&n, Fixed64{math.MinInt64 + 1})
-		}
 		// max uint64
 		testErr(uint64(math.MaxUint64), Fixed64{math.MaxInt64})
 		{
@@ -403,6 +404,9 @@ func Test_Fixed64_Fmt_(t *testing.T) {
 		)
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
+	// NaN
+	test(Fixed64{NaN}, 0, "")
+	test(NaN, 0, "")
 	//
 	// zeros with different number of decimal places
 	test("0", 0, "0")
