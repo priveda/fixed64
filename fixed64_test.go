@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-17 10:22:09 906ED7                         memd/[fixed64_test.go]
+// :v: 2019-05-17 10:30:50 2110D5                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -56,7 +56,11 @@ package fixed64
 //   Test_Fixed64_MarshalJSON_
 //   Test_Fixed64_UnmarshalJSON_
 //
-// # Test Helper Functions
+// # Internal Functions
+//   Test_logError_
+//   Test_mockable_Reset_
+//
+// # Testing Helper Functions
 //   AF(nums ...float64) (ret []float64)
 //   AI(nums ...int) (ret []int)
 //   AN(nums ...Fixed64) (ret []Fixed64)
@@ -1773,7 +1777,24 @@ func Test_Fixed64_UnmarshalJSON_(t *testing.T) {
 }
 
 // -----------------------------------------------------------------------------
-// # Test Helper Functions
+// # Internal Functions
+
+func Test_logError_(t *testing.T) {
+	//
+	// logError(args ...interface{}) error
+	//
+	logError() // TODO: more tests
+}
+
+func Test_mockable_Reset_(t *testing.T) {
+	//
+	// (m *mockable) Reset()
+	//
+	mod.Reset() // TODO: more tests
+}
+
+// -----------------------------------------------------------------------------
+// # Testing Helper Functions
 
 // AF is a convenience function to create an array of float64 numbers.
 // That is, instead of having to specify '[]float64{1.0, 2.0, 3.0}'
