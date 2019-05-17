@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-16 17:00:57 AE4636                       priveda/fixed64/[new.go]
+// :v: 2019-05-17 10:19:11 3ED818                       priveda/fixed64/[new.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -33,6 +33,9 @@ func New(value interface{}) Fixed64 {
 		}
 	case int64:
 		{
+			if v == NaN {
+				return Fixed64{NaN}
+			}
 			if v < -IntLimit || v > IntLimit {
 				return fixed64Overflow(v < 0, EOverflow, ": ", v)
 			}
