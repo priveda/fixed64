@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-20 01:32:42 205BDC                       priveda/fixed64/[new.go]
+// :v: 2019-05-20 01:43:40 08C97A                       priveda/fixed64/[new.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -10,16 +10,24 @@ import (
 	"reflect"
 )
 
-// New converts any compatible type to a Fixed64. This includes all
-// simple numeric types and strings, as well as pointers to these types.
+// New converts any compatible value type to Fixed64. This includes simple
+// numeric types and strings, as well as pointers to these types.
 //
-// When given a non-numeric string, logs an error and returns Fixed64{NaN}
-// which is a fixed-number type with a null value.
+// - Dereferences pointers to evaluate the pointed-to type.
+// - Converts nil to Fixed64{NaN}.
+// - Converts signed and unsigned integers, and floats to Fixed64.
+// - Converts numeric strings to Fixed64.
+//   If a string is zero-length or whitespace, returns Fixed64{0}
+//   If a string is not numeric, returns Fixed64{NaN}
+// - Converts boolean true to 1, false to 0.
+//
+// If the value can not be converted to Fixed64, returns
+// Fixed64{NaN} and logs an error (when logging is active).
 //
 // When given a nil pointer, also returns Fixed64{NaN}.
 //
-// Note that fmt.Stringer() is not automatically handled as
-// a string, to avoid hidden conversions and possible bugs.
+// Note: fmt.Stringer (or fmt.GoStringer) interfaces are not treated as
+// strings to avoid bugs from implicit conversion. Use the String method.
 //
 func New(value interface{}) Fixed64 {
 	switch v := value.(type) {

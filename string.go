@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 01:05:27 8B102B                    priveda/fixed64/[string.go]
+// :v: 2019-05-20 01:43:40 BB117F                    priveda/fixed64/[string.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -11,7 +11,7 @@ import (
 )
 
 // String returns a string representing the fixed-point number
-// with up to 4 decimals and implements the Stringer interface.
+// with up to 4 decimals and implements the fmt.Stringer interface.
 func (n Fixed64) String() string {
 	switch n.i64 {
 	case NaN:
