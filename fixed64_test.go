@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-17 10:30:50 2110D5                         memd/[fixed64_test.go]
+// :v: 2019-05-20 01:48:26 1AA77D                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -162,6 +162,10 @@ func Test_New_(t *testing.T) {
 	test(float64(1000), Fixed64{1000 * 1E4})
 	test(float64(12345.6789), Fixed64{12345.6789 * 1E4})
 	//
+	// booleans
+	test(true, Fixed64{1E4})
+	test(false, Fixed64{0})
+	//
 	// integer pointers
 	{
 		n := int(-123456)
@@ -285,10 +289,6 @@ func Test_New_(t *testing.T) {
 	{
 		// non-numeric string
 		testErr("abc", Fixed64{NaN})
-	}
-	{
-		// wrong type
-		testErr(true, Fixed64{NaN})
 	}
 	// overflow
 	{
