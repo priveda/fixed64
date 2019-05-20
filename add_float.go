@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:46:07 BF4CE4                 priveda/fixed64/[add_float.go]
+// :v: 2019-05-20 01:32:42 EA152C                 priveda/fixed64/[add_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -20,8 +20,7 @@ func (n Fixed64) AddFloat(nums ...float64) Fixed64 {
 		if b < -limit || b > limit {
 			return fixed64Overflow(
 				(a < 0 || b < 0) && (a > 0 || b > 0),
-				EOverflow, ": ", a, " * ", b, " = ", float64(a)*b,
-			)
+				a, " * ", b, " = ", float64(a)*b)
 		}
 		// use Add() because it has other overflow checks
 		n = n.Add(Fixed64{int64(b * 1E4)})

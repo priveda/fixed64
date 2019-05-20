@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-17 10:19:11 3ED818                       priveda/fixed64/[new.go]
+// :v: 2019-05-20 01:32:42 205BDC                       priveda/fixed64/[new.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -37,7 +37,7 @@ func New(value interface{}) Fixed64 {
 				return Fixed64{NaN}
 			}
 			if v < -IntLimit || v > IntLimit {
-				return fixed64Overflow(v < 0, EOverflow, ": ", v)
+				return fixed64Overflow(v < 0, v)
 			}
 			return Fixed64{int64(v) * 1E4}
 		}
@@ -48,7 +48,7 @@ func New(value interface{}) Fixed64 {
 	case uint64:
 		{
 			if v > IntLimit {
-				return fixed64Overflow(false, EOverflow, "uint64: ", v)
+				return fixed64Overflow(false, v)
 			}
 			return Fixed64{int64(v) * 1E4}
 		}
@@ -56,7 +56,7 @@ func New(value interface{}) Fixed64 {
 		{
 			if v < -float64(IntLimit)-0.9999 ||
 				v > float64(IntLimit)+0.9999 {
-				return fixed64Overflow(v < 0, EOverflow, "float64: ", v)
+				return fixed64Overflow(v < 0, v)
 			}
 			return Fixed64{int64(v * 1E4)}
 		}
@@ -104,7 +104,7 @@ func new2(value interface{}) (Fixed64, bool) {
 	case float32:
 		if v < -float32(IntLimit)-0.9999 ||
 			v > float32(IntLimit)+0.9999 {
-			return fixed64Overflow(v < 0, EOverflow, "float32: ", v), true
+			return fixed64Overflow(v < 0, v), true
 		}
 		return Fixed64{int64(float64(v) * 1E4)}, true
 	}

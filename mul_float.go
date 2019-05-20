@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:46:07 8BC961                 priveda/fixed64/[mul_float.go]
+// :v: 2019-05-20 01:32:42 A8DC84                 priveda/fixed64/[mul_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -19,8 +19,7 @@ func (n Fixed64) MulFloat(nums ...float64) Fixed64 {
 		if b < -limit || b > limit {
 			return fixed64Overflow(
 				(a < 0 || b < 0) && (a > 0 || b > 0),
-				"Overflow: ", a, " * ", b, " = ", a*b,
-			)
+				a, " * ", b, " = ", a*b)
 		}
 		// multiply using int64, if there is no overflow
 		n.i64 = int64(a * b)

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:56:23 EE7AB0                    priveda/fixed64/[module.go]
+// :v: 2019-05-20 01:32:42 A7FFB3                    priveda/fixed64/[module.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -62,7 +62,7 @@ package fixed64
 //   (n *Fixed64) UnmarshalJSON(data []byte) error
 //
 // # Helper Function
-//   fixed64Overflow(isNegative bool, a ...interface{}) Fixed64
+//   fixed64Overflow(isNegative bool, args ...interface{}) Fixed64
 
 // -----------------------------------------------------------------------------
 // # Function Proxy Variables (for mocking)

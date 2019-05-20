@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:46:07 352FC8                       priveda/fixed64/[add.go]
+// :v: 2019-05-20 01:32:42 DB271C                       priveda/fixed64/[add.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -18,10 +18,10 @@ func (n Fixed64) Add(nums ...Fixed64) Fixed64 {
 		)
 		// check for overflow
 		if c < minInt64 || (a < 0 && b < 0 && b < (minInt64-a)) {
-			return fixed64Overflow(true, EOverflow, ": ", a, " + ", b)
+			return fixed64Overflow(true, a, " + ", b)
 		}
 		if c > maxInt64 || (a > 0 && b > 0 && b > (maxInt64-a)) {
-			return fixed64Overflow(false, EOverflow, ": ", a, " + ", b)
+			return fixed64Overflow(false, a, " + ", b)
 		}
 		n.i64 = c
 	}
