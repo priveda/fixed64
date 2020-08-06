@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-20 01:32:42 D311E8                       priveda/fixed64/[mul.go]
+// :v: 2020-08-06 23:34:16 FD5F84                       priveda/fixed64/[mul.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -49,7 +49,7 @@ func (n Fixed64) Mul(nums ...Fixed64) Fixed64 {
 			}
 			return Fixed64{ret}
 		}
-		n.i64 = a * b / 1E4
+		n.i64 = a * b / 1e4
 	}
 	return n
 }

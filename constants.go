@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 01:10:29 DB74B0                 priveda/fixed64/[constants.go]
+// :v: 2020-08-06 23:34:16 A53FF6                 priveda/fixed64/[constants.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -52,7 +52,7 @@ const (
 
 var (
 	// big1E4 scales the int64 to provide 4 decimal places.
-	big1E4 = big.NewInt(1E4)
+	big1E4 = big.NewInt(1e4)
 )
 
 //end

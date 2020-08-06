@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-20 01:32:42 EA152C                 priveda/fixed64/[add_float.go]
+// :v: 2020-08-06 23:34:15 B7215E                 priveda/fixed64/[add_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -12,7 +12,7 @@ import (
 // AddFloat adds one or more floating-point numbers to a fixed-point
 // number and returns the result. The original number is not changed.
 func (n Fixed64) AddFloat(nums ...float64) Fixed64 {
-	const limit float64 = math.MaxInt64 / 1E4
+	const limit float64 = math.MaxInt64 / 1e4
 	a := n.i64
 	for _, b := range nums {
 		//
@@ -23,7 +23,7 @@ func (n Fixed64) AddFloat(nums ...float64) Fixed64 {
 				a, " * ", b, " = ", float64(a)*b)
 		}
 		// use Add() because it has other overflow checks
-		n = n.Add(Fixed64{int64(b * 1E4)})
+		n = n.Add(Fixed64{int64(b * 1e4)})
 	}
 	return n
 }

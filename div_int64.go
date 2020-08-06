@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 18:46:07 395309                 priveda/fixed64/[div_int64.go]
+// :v: 2020-08-06 23:34:16 156168                 priveda/fixed64/[div_int64.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -9,8 +9,8 @@ package fixed64
 // and returns the result. The original number is not changed.
 func (n Fixed64) DivInt64(nums ...int64) Fixed64 {
 	for _, num := range nums {
-		n.i64 *= 1E4
-		n.i64 /= (num * 1E4)
+		n.i64 *= 1e4
+		n.i64 /= (num * 1e4)
 	}
 	return n
 }

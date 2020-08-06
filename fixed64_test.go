@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2019-05-20 01:48:26 1AA77D                         memd/[fixed64_test.go]
+// :v: 2020-08-06 23:34:16 7A1A57                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -98,15 +98,15 @@ func Test_New_(t *testing.T) {
 		test(nil, Fixed64{NaN})
 	}
 	// highest/lowest possible fixed-point number
-	test(int64(-922337203685476), Fixed64{-922337203685476 * 1E4})
-	test(int64(922337203685476), Fixed64{922337203685476 * 1E4})
+	test(int64(-922337203685476), Fixed64{-922337203685476 * 1e4})
+	test(int64(922337203685476), Fixed64{922337203685476 * 1e4})
 	//
 	// strings
 	test(" ", Fixed64{0})
 	test("", Fixed64{0})
-	test("-922337203685476", Fixed64{-922337203685476 * 1E4})
-	test("1.01", Fixed64{1.01 * 1E4})
-	test("922337203685476", Fixed64{922337203685476 * 1E4})
+	test("-922337203685476", Fixed64{-922337203685476 * 1e4})
+	test("1.01", Fixed64{1.01 * 1e4})
+	test("922337203685476", Fixed64{922337203685476 * 1e4})
 	//
 	//
 	// NaN == math.MinInt64
@@ -116,27 +116,27 @@ func Test_New_(t *testing.T) {
 	test(int64(math.MinInt64), Fixed64{math.MinInt64})
 	//
 	// integers
-	test(int(-123456), Fixed64{-(123456 * 1E4)})
-	test(int16(math.MaxInt16), Fixed64{32767 * 1E4})
-	test(int16(math.MinInt16), Fixed64{-32768 * 1E4})
-	test(int32(math.MaxInt32), Fixed64{2147483647 * 1E4})
-	test(int32(math.MinInt32), Fixed64{-2147483648 * 1E4})
-	test(int8(math.MaxInt8), Fixed64{127 * 1E4})
-	test(int8(math.MinInt8), Fixed64{-128 * 1E4})
+	test(int(-123456), Fixed64{-(123456 * 1e4)})
+	test(int16(math.MaxInt16), Fixed64{32767 * 1e4})
+	test(int16(math.MinInt16), Fixed64{-32768 * 1e4})
+	test(int32(math.MaxInt32), Fixed64{2147483647 * 1e4})
+	test(int32(math.MinInt32), Fixed64{-2147483648 * 1e4})
+	test(int8(math.MaxInt8), Fixed64{127 * 1e4})
+	test(int8(math.MinInt8), Fixed64{-128 * 1e4})
 	// TODO: test with acceptable limit for int64
-	test(int64(math.MaxInt32), Fixed64{2147483647 * 1E4})
-	test(int64(math.MinInt32), Fixed64{-2147483648 * 1E4})
+	test(int64(math.MaxInt32), Fixed64{2147483647 * 1e4})
+	test(int64(math.MinInt32), Fixed64{-2147483648 * 1e4})
 	//
 	// unsigned integers
-	test(uint(123456), Fixed64{123456 * 1E4})
+	test(uint(123456), Fixed64{123456 * 1e4})
 	test(uint16(0), Fixed64{0})
-	test(uint16(math.MaxUint16), Fixed64{65535 * 1E4})
+	test(uint16(math.MaxUint16), Fixed64{65535 * 1e4})
 	test(uint32(0), Fixed64{0})
-	test(uint32(math.MaxUint32), Fixed64{4294967295 * 1E4})
+	test(uint32(math.MaxUint32), Fixed64{4294967295 * 1e4})
 	test(uint64(0), Fixed64{0})
-	test(uint64(922337203685476), Fixed64{922337203685476 * 1E4})
+	test(uint64(922337203685476), Fixed64{922337203685476 * 1e4})
 	test(uint8(0), Fixed64{0})
-	test(uint8(math.MaxUint8), Fixed64{255 * 1E4})
+	test(uint8(math.MaxUint8), Fixed64{255 * 1e4})
 	//
 	// floating-point numbers:
 	//
@@ -157,60 +157,60 @@ func Test_New_(t *testing.T) {
 	test(float64(-0.01), Fixed64{-100})
 	test(float64(-0.1), Fixed64{-1000})
 	//
-	test(float32(1000), Fixed64{1000 * 1E4})
-	test(float32(1234.5), Fixed64{1234.5 * 1E4})
-	test(float64(1000), Fixed64{1000 * 1E4})
-	test(float64(12345.6789), Fixed64{12345.6789 * 1E4})
+	test(float32(1000), Fixed64{1000 * 1e4})
+	test(float32(1234.5), Fixed64{1234.5 * 1e4})
+	test(float64(1000), Fixed64{1000 * 1e4})
+	test(float64(12345.6789), Fixed64{12345.6789 * 1e4})
 	//
 	// booleans
-	test(true, Fixed64{1E4})
+	test(true, Fixed64{1e4})
 	test(false, Fixed64{0})
 	//
 	// integer pointers
 	{
 		n := int(-123456)
-		test(&n, Fixed64{-(123456 * 1E4)})
+		test(&n, Fixed64{-(123456 * 1e4)})
 	}
 	{
 		n := int8(math.MaxInt8)
-		test(&n, Fixed64{127 * 1E4})
+		test(&n, Fixed64{127 * 1e4})
 	}
 	{
 		n := int8(math.MinInt8)
-		test(&n, Fixed64{-128 * 1E4})
+		test(&n, Fixed64{-128 * 1e4})
 	}
 	{
 		n := int16(math.MaxInt16)
-		test(&n, Fixed64{32767 * 1E4})
+		test(&n, Fixed64{32767 * 1e4})
 	}
 	{
 		n := int16(math.MinInt16)
-		test(&n, Fixed64{-32768 * 1E4})
+		test(&n, Fixed64{-32768 * 1e4})
 	}
 	{
 		n := int32(math.MaxInt32)
-		test(&n, Fixed64{2147483647 * 1E4})
+		test(&n, Fixed64{2147483647 * 1e4})
 	}
 	{
 		n := int32(math.MinInt32)
-		test(&n, Fixed64{-2147483648 * 1E4})
+		test(&n, Fixed64{-2147483648 * 1e4})
 	}
 	{
 		n := int64(922337203685476)
-		test(&n, Fixed64{922337203685476 * 1E4})
+		test(&n, Fixed64{922337203685476 * 1e4})
 	}
 	{
 		n := int64(-922337203685476)
-		test(&n, Fixed64{-922337203685476 * 1E4})
+		test(&n, Fixed64{-922337203685476 * 1e4})
 	}
 	// unsigned integer pointers
 	{
 		n := uint(123456)
-		test(&n, Fixed64{123456 * 1E4})
+		test(&n, Fixed64{123456 * 1e4})
 	}
 	{
 		n := uint8(math.MaxUint8)
-		test(&n, Fixed64{255 * 1E4})
+		test(&n, Fixed64{255 * 1e4})
 	}
 	{
 		n := uint8(0)
@@ -218,7 +218,7 @@ func Test_New_(t *testing.T) {
 	}
 	{
 		n := uint16(math.MaxUint16)
-		test(&n, Fixed64{65535 * 1E4})
+		test(&n, Fixed64{65535 * 1e4})
 	}
 	{
 		n := uint16(0)
@@ -226,7 +226,7 @@ func Test_New_(t *testing.T) {
 	}
 	{
 		n := uint32(math.MaxUint32)
-		test(&n, Fixed64{4294967295 * 1E4})
+		test(&n, Fixed64{4294967295 * 1e4})
 	}
 	{
 		n := uint32(0)
@@ -240,19 +240,19 @@ func Test_New_(t *testing.T) {
 	// pointers to floating-point numbers
 	{
 		n := float32(1000)
-		test(&n, Fixed64{1000 * 1E4})
+		test(&n, Fixed64{1000 * 1e4})
 	}
 	{
 		n := float32(1234.5)
-		test(&n, Fixed64{1234.5 * 1E4})
+		test(&n, Fixed64{1234.5 * 1e4})
 	}
 	{
 		n := float64(1000)
-		test(&n, Fixed64{1000 * 1E4})
+		test(&n, Fixed64{1000 * 1e4})
 	}
 	{
 		n := float64(12345.6789)
-		test(&n, Fixed64{12345.6789 * 1E4})
+		test(&n, Fixed64{12345.6789 * 1e4})
 	}
 	// nil pointer to float
 	{
@@ -262,11 +262,11 @@ func Test_New_(t *testing.T) {
 	// pointer to string
 	{
 		s := "922337203685476"
-		test(&s, Fixed64{922337203685476 * 1E4})
+		test(&s, Fixed64{922337203685476 * 1e4})
 	}
 	{
 		s := "-922337203685476"
-		test(&s, Fixed64{-922337203685476 * 1E4})
+		test(&s, Fixed64{-922337203685476 * 1e4})
 	}
 	// nil pointer to string
 	{
@@ -370,8 +370,8 @@ func Test_Parse_(t *testing.T) {
 	test("00 ", 0, false)
 	test("00", 0, false)
 	//
-	test("0.12345", 0*1E4+1234, false)
-	test("123456", 123456*1E4, false)
+	test("0.12345", 0*1e4+1234, false)
+	test("123456", 123456*1e4, false)
 	test("abc", NaN, true)
 }
 
@@ -518,16 +518,16 @@ func Test_Fixed64_String_(t *testing.T) {
 	test(Fixed64{0}, "0")
 	//
 	// integers
-	test(Fixed64{-1 * 1E4}, "-1")
-	test(Fixed64{-12 * 1E4}, "-12")
-	test(Fixed64{-123 * 1E4}, "-123")
-	test(Fixed64{-1234 * 1E4}, "-1234")
-	test(Fixed64{-12345 * 1E4}, "-12345")
-	test(Fixed64{1 * 1E4}, "1")
-	test(Fixed64{12 * 1E4}, "12")
-	test(Fixed64{123 * 1E4}, "123")
-	test(Fixed64{1234 * 1E4}, "1234")
-	test(Fixed64{12345 * 1E4}, "12345")
+	test(Fixed64{-1 * 1e4}, "-1")
+	test(Fixed64{-12 * 1e4}, "-12")
+	test(Fixed64{-123 * 1e4}, "-123")
+	test(Fixed64{-1234 * 1e4}, "-1234")
+	test(Fixed64{-12345 * 1e4}, "-12345")
+	test(Fixed64{1 * 1e4}, "1")
+	test(Fixed64{12 * 1e4}, "12")
+	test(Fixed64{123 * 1e4}, "123")
+	test(Fixed64{1234 * 1e4}, "1234")
+	test(Fixed64{12345 * 1e4}, "12345")
 	//
 	// numbers with zero int part and some decimals
 	test(Fixed64{-1000}, "-0.1")
@@ -555,11 +555,11 @@ func Test_Fixed64_String_(t *testing.T) {
 	//
 	// numbers with both int part and decimals
 	test(Fixed64{-10100}, "-1.01")
-	test(Fixed64{-1234*1E4 - 5678}, "-1234.5678")
+	test(Fixed64{-1234*1e4 - 5678}, "-1234.5678")
 	test(Fixed64{-123456789}, "-12345.6789")
 	test(Fixed64{-2000000000000000001}, "-200000000000000.0001")
 	test(Fixed64{10100}, "1.01")
-	test(Fixed64{1234*1E4 + 5678}, "1234.5678")
+	test(Fixed64{1234*1e4 + 5678}, "1234.5678")
 	test(Fixed64{123456789}, "12345.6789")
 	test(Fixed64{12345}, "1.2345")
 	test(Fixed64{2000000000000000001}, "200000000000000.0001")
@@ -774,7 +774,7 @@ func Test_Fixed64_Mul_2_(t *testing.T) {
 		IntLimit = 922337203685476
 	)
 	test(0, 0, 0)             // 0 = 0 x 0
-	test(4*1E4, 2*1E4, 2*1E4) // 4.0000 = 2.0000 x 2.0000
+	test(4*1e4, 2*1e4, 2*1e4) // 4.0000 = 2.0000 x 2.0000
 	//
 	// 922,337,203,681,802.9970 = square 30,370,004.9997
 	test(9223372036818029970, 303700049997, 303700049997)
@@ -803,14 +803,14 @@ func Test_Fixed64_Mul_2_(t *testing.T) {
 	testOver(math.MinInt64+1, 303700049998, -303700049998)
 	testOver(math.MaxInt64, 303700049998, 303700049998)
 	//
-	testOver(math.MinInt64+1, -IntLimit*1E4, IntLimit*1E4)
-	testOver(math.MinInt64+1, IntLimit*1E4, -IntLimit*1E4)
-	testOver(math.MaxInt64, IntLimit*1E4, IntLimit*1E4)
+	testOver(math.MinInt64+1, -IntLimit*1e4, IntLimit*1e4)
+	testOver(math.MinInt64+1, IntLimit*1e4, -IntLimit*1e4)
+	testOver(math.MaxInt64, IntLimit*1e4, IntLimit*1e4)
 	//
-	testOver(math.MinInt64+1, minInt64-1, 1E4)
-	testOver(math.MinInt64+1, 1E4, minInt64-1)
-	testOver(math.MaxInt64, maxInt64+1, 1E4)
-	testOver(math.MaxInt64, 1E4, maxInt64+1)
+	testOver(math.MinInt64+1, minInt64-1, 1e4)
+	testOver(math.MinInt64+1, 1e4, minInt64-1)
+	testOver(math.MaxInt64, maxInt64+1, 1e4)
+	testOver(math.MaxInt64, 1e4, maxInt64+1)
 	//
 	testOver(math.MinInt64+1, -9004443332221119999, 9004443332221119999)
 	testOver(math.MinInt64+1, 9004443332221119999, -9004443332221119999)
@@ -838,7 +838,7 @@ func Test_Fixed64_MulFloat_(t *testing.T) {
 	test(Fixed64{0}, AF(1.0), Fixed64{0})
 	//
 	//            2   *        2.0   =        4
-	test(Fixed64{2 * 1E4}, AF(2.0), Fixed64{4 * 1E4})
+	test(Fixed64{2 * 1e4}, AF(2.0), Fixed64{4 * 1e4})
 	//
 	//           12345.6789   *  1   =       12345.6789
 	test(Fixed64{123456789}, AF(1), Fixed64{123456789})
@@ -911,7 +911,7 @@ func Test_Fixed64_MulInt_(t *testing.T) {
 	test(Fixed64{0}, AI(1), Fixed64{0})
 	//
 	//            2         *   2   =        4
-	test(Fixed64{2 * 1E4}, AI(2), Fixed64{4 * 1E4})
+	test(Fixed64{2 * 1e4}, AI(2), Fixed64{4 * 1e4})
 	//
 	//           12345.6789   *   1   =       12345.6789
 	test(Fixed64{123456789}, AI(1), Fixed64{123456789})
@@ -940,12 +940,12 @@ func Test_Fixed64_MulInt64_(t *testing.T) {
 		}
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(Fixed64{-123 * 1E4}, []int64{2}, Fixed64{-246 * 1E4})
-	test(Fixed64{2 * 1E4}, []int64{2, 2, 2, 2, 2}, Fixed64{64 * 1E4})
-	test(Fixed64{2 * 1E4}, []int64{2}, Fixed64{4 * 1E4})
+	test(Fixed64{-123 * 1e4}, []int64{2}, Fixed64{-246 * 1e4})
+	test(Fixed64{2 * 1e4}, []int64{2, 2, 2, 2, 2}, Fixed64{64 * 1e4})
+	test(Fixed64{2 * 1e4}, []int64{2}, Fixed64{4 * 1e4})
 	test(New(0), []int64{0}, Fixed64{0})
 	test(New(0), []int64{1, 3, 5, 7, 11}, Fixed64{0})
-	test(New(1), []int64{3, 5, 7}, Fixed64{105 * 1E4})
+	test(New(1), []int64{3, 5, 7}, Fixed64{105 * 1e4})
 	// TODO: add more test cases
 }
 
@@ -1164,10 +1164,10 @@ func Test_Fixed64_AddInt64_(t *testing.T) {
 		}
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(Fixed64{-12345 * 1E4}, []int64{12345}, Fixed64{0})
-	test(Fixed64{2 * 1E4}, []int64{2}, Fixed64{4 * 1E4})
+	test(Fixed64{-12345 * 1e4}, []int64{12345}, Fixed64{0})
+	test(Fixed64{2 * 1e4}, []int64{2}, Fixed64{4 * 1e4})
 	test(New(0), []int64{0}, Fixed64{0})
-	test(New(0), []int64{1, 3, 5, 7, 11}, Fixed64{27 * 1E4})
+	test(New(0), []int64{1, 3, 5, 7, 11}, Fixed64{27 * 1e4})
 	// TODO: add more test cases
 }
 
@@ -1376,11 +1376,11 @@ func Test_Fixed64_SubInt64_(t *testing.T) {
 		}
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(Fixed64{-12345 * 1E4}, []int64{-12345}, Fixed64{0})
-	test(Fixed64{12345 * 1E4}, []int64{12345}, Fixed64{0})
-	test(Fixed64{4 * 1E4}, []int64{2}, Fixed64{2 * 1E4})
+	test(Fixed64{-12345 * 1e4}, []int64{-12345}, Fixed64{0})
+	test(Fixed64{12345 * 1e4}, []int64{12345}, Fixed64{0})
+	test(Fixed64{4 * 1e4}, []int64{2}, Fixed64{2 * 1e4})
 	test(New(0), []int64{0}, Fixed64{0})
-	test(New(0), []int64{1, 3, 5, 7, 11}, Fixed64{-27 * 1E4})
+	test(New(0), []int64{1, 3, 5, 7, 11}, Fixed64{-27 * 1e4})
 	// TODO: add more test cases
 }
 
@@ -1667,9 +1667,9 @@ func Test_Fixed64_Unwrap_(t *testing.T) {
 		got := n.Unwrap()
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
-	test(Fixed64{-123456789 * 1E4}, -1234567890000)
+	test(Fixed64{-123456789 * 1e4}, -1234567890000)
 	test(Fixed64{0}, 0)
-	test(Fixed64{1 * 1E4}, 10000)
+	test(Fixed64{1 * 1e4}, 10000)
 	test(New(-123456789), -1234567890000)
 	test(New(0), 0)
 	test(New(1), 10000)

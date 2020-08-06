@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-20 01:46:11 C0654E                     priveda/fixed64/[new_e.go]
+// :v: 2020-08-06 23:34:16 4D27AA                     priveda/fixed64/[new_e.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -42,7 +42,7 @@ func NewE(value interface{}) (Fixed64, error) {
 			if n < -IntLimit || n > IntLimit {
 				return fixed64Overflow(n < 0, n), errors.New(EOverflow)
 			}
-			return Fixed64{n * 1E4}, nil
+			return Fixed64{n * 1e4}, nil
 		}
 	case float64, float32:
 		{
@@ -51,7 +51,7 @@ func NewE(value interface{}) (Fixed64, error) {
 				n > float64(IntLimit)+0.9999 {
 				return fixed64Overflow(n < 0, n), errors.New(EOverflow)
 			}
-			return Fixed64{int64(n * 1E4)}, nil
+			return Fixed64{int64(n * 1e4)}, nil
 		}
 	case string:
 		{
@@ -64,7 +64,7 @@ func NewE(value interface{}) (Fixed64, error) {
 			if n > IntLimit {
 				return fixed64Overflow(false, n), errors.New(EOverflow)
 			}
-			return Fixed64{int64(n) * 1E4}, nil
+			return Fixed64{int64(n) * 1e4}, nil
 		}
 	case Fixed64:
 		{
@@ -73,7 +73,7 @@ func NewE(value interface{}) (Fixed64, error) {
 	case bool:
 		{
 			if v {
-				return Fixed64{1 * 1E4}, nil
+				return Fixed64{1 * 1e4}, nil
 			}
 			return Fixed64{0}, nil
 		}

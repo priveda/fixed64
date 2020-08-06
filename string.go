@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-20 01:43:40 BB117F                    priveda/fixed64/[string.go]
+// :v: 2020-08-06 23:34:16 CC7FFD                    priveda/fixed64/[string.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
@@ -22,8 +22,8 @@ func (n Fixed64) String() string {
 		return "0"
 	}
 	var (
-		i    = n.i64 / 1E4              // integer value
-		d    = n.i64 - i*1E4            // decimal value
+		i    = n.i64 / 1e4              // integer value
+		d    = n.i64 - i*1e4            // decimal value
 		intS = strconv.FormatInt(i, 10) // integer part
 		decS string                     // decimal part
 	)
@@ -35,7 +35,7 @@ func (n Fixed64) String() string {
 			}
 		}
 		decS = "." + strings.TrimRight(
-			strconv.FormatInt(d+1E4, 10)[1:],
+			strconv.FormatInt(d+1e4, 10)[1:],
 			"0",
 		)
 	}
