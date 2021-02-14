@@ -14,4 +14,4 @@ func (n Fixed64) AddInt64(nums ...int64) Fixed64 {
 	return n
 }
 
-//end
+// end

@@ -54,4 +54,4 @@ func (n Fixed64) Mul(nums ...Fixed64) Fixed64 {
 	return n
 }
 
-//end
+// end

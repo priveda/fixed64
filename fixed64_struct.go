@@ -12,4 +12,4 @@ type Fixed64 struct {
 	i64 int64
 }
 
-//end
+// end

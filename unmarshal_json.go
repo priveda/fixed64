@@ -27,4 +27,4 @@ func (n *Fixed64) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-//end
+// end

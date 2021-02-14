@@ -1827,4 +1827,4 @@ func AN(nums ...Fixed64) (ret []Fixed64) {
 	return ret
 }
 
-//end
+// end

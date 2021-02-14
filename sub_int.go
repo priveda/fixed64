@@ -14,4 +14,4 @@ func (n Fixed64) SubInt(nums ...int) Fixed64 {
 	return n
 }
 
-//end
+// end

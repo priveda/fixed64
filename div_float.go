@@ -15,4 +15,4 @@ func (n Fixed64) DivFloat(nums ...float64) Fixed64 {
 	return n
 }
 
-//end
+// end

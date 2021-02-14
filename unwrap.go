@@ -10,4 +10,4 @@ func (n Fixed64) Unwrap() int64 {
 	return n.i64
 }
 
-//end
+// end

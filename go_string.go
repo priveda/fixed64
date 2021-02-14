@@ -11,4 +11,4 @@ func (n Fixed64) GoString() string {
 	return "fixed64.New(" + n.String() + ")"
 }
 
-//end
+// end

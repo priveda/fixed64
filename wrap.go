@@ -12,4 +12,4 @@ func Wrap(i64 int64) Fixed64 {
 	return Fixed64{i64: i64}
 }
 
-//end
+// end

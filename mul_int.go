@@ -14,4 +14,4 @@ func (n Fixed64) MulInt(nums ...int) Fixed64 {
 	return n
 }
 
-//end
+// end

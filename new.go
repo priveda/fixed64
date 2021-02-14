@@ -36,4 +36,4 @@ func New(value interface{}) Fixed64 {
 	return n
 }
 
-//end
+// end

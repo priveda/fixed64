@@ -14,4 +14,4 @@ func (n Fixed64) SubFloat(nums ...float64) Fixed64 {
 	return n
 }
 
-//end
+// end

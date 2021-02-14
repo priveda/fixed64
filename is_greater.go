@@ -10,4 +10,4 @@ func (n Fixed64) IsGreater(value interface{}) bool {
 	return n.i64 > New(value).i64
 }
 
-//end
+// end

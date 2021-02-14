@@ -98,4 +98,4 @@ func NewE(value interface{}) (Fixed64, error) {
 	return ret, errors.New(erm)
 }
 
-//end
+// end

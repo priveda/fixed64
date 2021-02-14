@@ -26,4 +26,4 @@ func (n Fixed64) Sub(nums ...Fixed64) Fixed64 {
 	return n
 }
 
-//end
+// end

@@ -10,4 +10,4 @@ func (n Fixed64) Int() int64 {
 	return n.i64 / 1e4
 }
 
-//end
+// end

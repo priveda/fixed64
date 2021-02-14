@@ -73,4 +73,4 @@ func Parse(s string) (Fixed64, error) {
 	return Fixed64{ret}, nil
 }
 
-//end
+// end

@@ -15,4 +15,4 @@ func (n Fixed64) Div(nums ...Fixed64) Fixed64 {
 	return n
 }
 
-//end
+// end

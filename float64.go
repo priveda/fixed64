@@ -10,4 +10,4 @@ func (n Fixed64) Float64() float64 {
 	return float64(n.i64) / 1e4
 }
 
-//end
+// end

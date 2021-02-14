@@ -42,4 +42,4 @@ func (n Fixed64) String() string {
 	return intS + decS
 }
 
-//end
+// end

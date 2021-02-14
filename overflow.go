@@ -22,4 +22,4 @@ func (n Fixed64) Overflow() int {
 	return 0
 }
 
-//end
+// end

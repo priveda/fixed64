@@ -10,4 +10,4 @@ func (n Fixed64) IsNegative() bool {
 	return n.i64 < 0 && n.i64 != NaN
 }
 
-//end
+// end

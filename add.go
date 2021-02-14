@@ -28,4 +28,4 @@ func (n Fixed64) Add(nums ...Fixed64) Fixed64 {
 	return n
 }
 
-//end
+// end

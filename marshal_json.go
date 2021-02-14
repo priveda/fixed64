@@ -31,4 +31,4 @@ func (n Fixed64) MarshalJSON() ([]byte, error) {
 	return []byte(ret), nil
 }
 
-//end
+// end

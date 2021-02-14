@@ -10,4 +10,4 @@ func (n Fixed64) IsZero() bool {
 	return n.i64 == 0
 }
 
-//end
+// end

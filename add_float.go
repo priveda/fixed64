@@ -28,4 +28,4 @@ func (n Fixed64) AddFloat(nums ...float64) Fixed64 {
 	return n
 }
 
-//end
+// end

@@ -27,4 +27,4 @@ func fixed64Overflow(isNegative bool, args ...interface{}) Fixed64 {
 	return Fixed64{math.MaxInt64}
 }
 
-//end
+// end
