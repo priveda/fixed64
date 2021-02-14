@@ -1690,8 +1690,8 @@ func Test_Fixed64_MarshalJSON_(t *testing.T) {
 		script, _ := json.MarshalIndent(box, "", " ")
 		//                  ^ calls the number's MarshalIndent() method
 		got := string(script)
-		got = strings.Replace(got, "\n", "", -1)
-		got = strings.Replace(got, "{ ", "{", -1)
+		got = strings.ReplaceAll(got, "\n", "")
+		got = strings.ReplaceAll(got, "{ ", "{")
 		{
 			label := fmt.Sprintf("<-L%d: Fixed64.MarshalJSON()..", testLine())
 			testGot(label, got, want, func(erm string) { t.Error(erm) })
