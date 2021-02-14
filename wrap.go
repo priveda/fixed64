@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number                       priveda/fixed64/[wrap.go]
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-15 16:44:38 B67433                      priveda/fixed64/[wrap.go]
 // -----------------------------------------------------------------------------
 
 package fixed64

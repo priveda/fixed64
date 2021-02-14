@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number                          memd/[fixed64_test.go]
 // (c) balarabe@protonmail.com                                      License: MIT
-// :v: 2020-08-06 23:34:16 7A1A57                         memd/[fixed64_test.go]
 // -----------------------------------------------------------------------------
 
 package fixed64

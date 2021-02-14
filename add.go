@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number                        priveda/fixed64/[add.go]
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-20 01:32:42 DB271C                       priveda/fixed64/[add.go]
 // -----------------------------------------------------------------------------
 
 package fixed64

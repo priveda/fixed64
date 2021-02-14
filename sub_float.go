@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number                  priveda/fixed64/[sub_float.go]
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2020-08-06 23:34:16 5E5B32                 priveda/fixed64/[sub_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64

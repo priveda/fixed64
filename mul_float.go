@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number                  priveda/fixed64/[mul_float.go]
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-20 01:32:42 A8DC84                 priveda/fixed64/[mul_float.go]
 // -----------------------------------------------------------------------------
 
 package fixed64

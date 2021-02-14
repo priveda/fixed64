@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number               priveda/fixed64/[marshal_json.go]
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2020-08-06 23:34:16 96D1D8              priveda/fixed64/[marshal_json.go]
 // -----------------------------------------------------------------------------
 
 package fixed64

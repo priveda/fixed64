@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number                      priveda/fixed64/[parse.go]
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-17 08:23:43 2DA55C                     priveda/fixed64/[parse.go]
 // -----------------------------------------------------------------------------
 
 package fixed64

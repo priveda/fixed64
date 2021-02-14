@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number                  priveda/fixed64/[constants.go]
 // (c) admin@priveda.com                                            License: MIT
-// :v: 2019-05-14 17:30:23 394C4F                 priveda/fixed64/[constants.go]
 // -----------------------------------------------------------------------------
 
 package fixed64
