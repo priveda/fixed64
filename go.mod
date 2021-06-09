@@ -1,4 +1,7 @@
-// priveda/fixed64/[go.mod]
+// -----------------------------------------------------------------------------
+// 64-bit Fixed-precision Number                        priveda/fixed64/[go.mod]
+// (c) admin@priveda.com                                            License: MIT
+// -----------------------------------------------------------------------------
 
 module github.com/priveda/fixed64
 
