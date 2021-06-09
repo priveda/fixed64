@@ -13,9 +13,6 @@ import (
 // This method alters the number's value.
 func (n *Fixed64) UnmarshalJSON(data []byte) error {
 	//  ^  don't remove pointer receiver, it is necessary
-	if n == nil {
-		return mod.Error(ENilReceiver)
-	}
 	var (
 		num float64
 		err = json.Unmarshal(data, &num)

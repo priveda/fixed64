@@ -18,9 +18,6 @@ const (
 	// EOverflow indicates an arithmetic overflow.
 	EOverflow = "Overflow"
 
-	// ENilReceiver indicates a method call on a nil object.
-	ENilReceiver = "nil receiver"
-
 	// IntLimit specifies the highest (and lowest when negative)
 	// integer component that the fixed-point type can hold,
 	// about 922.33 trillion.
