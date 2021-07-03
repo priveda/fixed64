@@ -29,7 +29,14 @@ func (n Fixed64) Fmt(decimalPlaces int) string {
 	)
 	if neg {
 		intPart = -intPart
-		ws("-")
+		decPart = -decPart
+		hasDec := (decimalPlaces == 1 && decPart/1000 > 0) ||
+			(decimalPlaces == 2 && decPart/100 > 0) ||
+			(decimalPlaces == 3 && decPart/10 > 0) ||
+			(decimalPlaces >= 4 && decPart > 0)
+		if intPart > 0 || hasDec {
+			ws("-")
+		}
 	}
 	// calculate length of number's integer part
 	for limit := int64(0); intLen < 15; intLen++ {
