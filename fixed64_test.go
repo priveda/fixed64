@@ -1819,9 +1819,7 @@ func Test_mockable_Reset_(t *testing.T) {
 // That is, instead of having to specify '[]float64{1.0, 2.0, 3.0}'
 // you can just use 'AF(1.0, 2.0, 3.0)'.
 func AF(nums ...float64) (ret []float64) {
-	for _, num := range nums {
-		ret = append(ret, num)
-	}
+	ret = append(ret, nums...)
 	return ret
 }
 
@@ -1829,9 +1827,7 @@ func AF(nums ...float64) (ret []float64) {
 // That is, instead of having to specify '[]int{1, 2, 3}'
 // you can just use 'AI(1, 2, 3)'.
 func AI(nums ...int) (ret []int) {
-	for _, num := range nums {
-		ret = append(ret, num)
-	}
+	ret = append(ret, nums...)
 	return ret
 }
 
