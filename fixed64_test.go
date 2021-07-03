@@ -1774,16 +1774,6 @@ func Test_Fixed64_UnmarshalJSON_(t *testing.T) {
 		testGot(label, got, want, func(erm string) { t.Error(erm) })
 	}
 	{
-		testErrors(`<nil>.UnmarshalJSON("1234567")`,
-			func() error {
-				var n *Fixed64
-				err := n.UnmarshalJSON([]byte("1234567"))
-				return err
-			},
-			func(erm string) { t.Error(erm) },
-		)
-	}
-	{
 		testErrors("`Fixed64{}.UnmarshalJSON(<nil>)",
 			func() error {
 				var n Fixed64
