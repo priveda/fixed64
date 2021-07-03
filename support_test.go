@@ -36,13 +36,13 @@ var gotErm string
 // gotError is a flag used for testing if errors are detected
 var gotError bool
 
-// NoError is a placeholder error that is returned in
+// ErrNone is a placeholder error that is returned in
 // the closure function called by testErrors().
 // If the function just returned nil, testErrors() would
 // complain no error was returned. But not all functions
 // need to return an error (even if they detect
-// inconsistencies). In these cases just return NoError.
-var NoError = errors.New("No Error")
+// inconsistencies). In these cases just return ErrNone.
+var ErrNone = errors.New("no error")
 
 // -----------------------------------------------------------------------------
 // # Test Helpers
@@ -71,7 +71,7 @@ func mockError(enable bool) {
 // detects errors by calling mod.Error() and returns an error value.
 //
 // If a function doesn't return an error value,
-// then exec() should return NoError.
+// then exec() should return ErrNone.
 //
 // If the test fails, calls fail() function passing it
 // the label combined with the error message string.

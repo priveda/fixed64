@@ -280,7 +280,7 @@ func Test_New_(t *testing.T) {
 				got := New(input)
 				testGot(label, got.i64, want.i64,
 					func(erm string) { t.Error(erm) })
-				return NoError
+				return ErrNone
 			},
 			func(erm string) { t.Error(erm) },
 		)
@@ -739,7 +739,7 @@ func Test_Fixed64_Mul_(t *testing.T) {
 					t.Errorf("%s mutated from <%s> to <%s>", label, old, n)
 				}
 				testGot(label, got, want, func(erm string) { t.Error(erm) })
-				return NoError
+				return ErrNone
 			},
 			func(erm string) { t.Error(erm) },
 		)
@@ -896,7 +896,7 @@ func Test_Fixed64_MulFloat_(t *testing.T) {
 					t.Errorf("%s mutated from <%s> to <%s>", label, old, n)
 				}
 				testGot(label, got, want, func(erm string) { t.Error(erm) })
-				return NoError
+				return ErrNone
 			},
 			func(erm string) { t.Error(erm) },
 		)
@@ -1070,7 +1070,7 @@ func Test_Fixed64_Add_(t *testing.T) {
 					t.Errorf("%s mutated from <%s> to <%s>", label, old, n)
 				}
 				testGot(label, got, want, func(erm string) { t.Error(erm) })
-				return NoError
+				return ErrNone
 			},
 			func(erm string) { t.Error(erm) },
 		)
@@ -1138,7 +1138,7 @@ func Test_Fixed64_AddFloat_(t *testing.T) {
 					t.Errorf("%s mutated from <%s> to <%s>", label, old, n)
 				}
 				testGot(label, got, want, func(erm string) { t.Error(erm) })
-				return NoError
+				return ErrNone
 			},
 			func(erm string) { t.Error(erm) },
 		)
@@ -1297,7 +1297,7 @@ func Test_Fixed64_Sub_(t *testing.T) {
 					t.Errorf("%s mutated from <%s> to <%s>", label, old, n)
 				}
 				testGot(label, got, want, func(erm string) { t.Error(erm) })
-				return NoError
+				return ErrNone
 			},
 			func(erm string) { t.Error(erm) },
 		)
@@ -1751,7 +1751,7 @@ func Test_Fixed64_MarshalJSON_(t *testing.T) {
 	testErrors("overflow",
 		func() error {
 			test(int64(922337203685477), `{"Num": 922337203685477.5807}`)
-			return NoError
+			return ErrNone
 		},
 		func(erm string) { t.Error(erm) },
 	)
