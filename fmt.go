@@ -19,17 +19,20 @@ func (n Fixed64) Fmt(decimalPlaces int) string {
 		return ""
 	}
 	var (
-		retBuf  = bytes.NewBuffer(make([]byte, 0, 25))
-		ws      = retBuf.WriteString
-		wr      = retBuf.WriteRune
-		intLen  = 0
-		intPart = n.i64 / 1e4         // integer part of the number
-		decPart = n.i64 - intPart*1e4 // decimal part (as an int)
-		neg     = n.i64 < 0           // is it negative? use absolute value
+		retBuf   = bytes.NewBuffer(make([]byte, 0, 25))
+		ws       = retBuf.WriteString
+		wr       = retBuf.WriteRune
+		intLen   = 0
+		intPart  = n.i64 / 1e4         // integer part of the number
+		decPart  = n.i64 - intPart*1e4 // decimal part (as an int)
+		negative = n.i64 < 0
 	)
-	if neg {
+	if negative {
+		// if negative, use absolute value
 		intPart = -intPart
 		decPart = -decPart
+		//
+		// prevent zero values with leading '-'
 		hasDec := (decimalPlaces == 1 && decPart/1000 > 0) ||
 			(decimalPlaces == 2 && decPart/100 > 0) ||
 			(decimalPlaces == 3 && decPart/10 > 0) ||
